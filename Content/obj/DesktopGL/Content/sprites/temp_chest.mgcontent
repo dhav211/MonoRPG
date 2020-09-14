@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>/home/daniel/GameDev/MonoRPG/Content/sprites/temp_chest.png</SourceFile>
-  <SourceTime>2020-08-20T20:26:03.8802509-07:00</SourceTime>
+  <SourceTime>2020-09-14T12:26:50.311619-07:00</SourceTime>
   <DestFile>/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/sprites/temp_chest.xnb</DestFile>
-  <DestTime>2020-08-21T15:53:40.870041-07:00</DestTime>
+  <DestTime>2020-09-14T12:26:51.1516167-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
