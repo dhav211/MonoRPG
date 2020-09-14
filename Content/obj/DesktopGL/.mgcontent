@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>/home/daniel/GameDev/MonoRPG/Content/fonts/test_font.spritefont</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/sprites/red_box.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/sprites/temp_chest.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/sprites/white_box.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/tilesets/temp_tileset.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/ui/9splicesprite.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>fonts/m5x7_16.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

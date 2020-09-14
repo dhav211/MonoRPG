@@ -1,0 +1,33 @@
+Tasks:
+    UI.
+    -Components-
+    X1. Nine slice sprite.
+    X2. Label
+    X3. Button (Text, Texture, TextureAndText)
+
+    -Entities-
+    X1X. Damage indication. A number that appears briefly above and entity's head when damaged.
+    X1. Simple text box that is composed of a nine splice sprite, label, and a text button at bottom that closes text box.
+
+    -Debug Console-
+    Prints debug messages to a text box which is activated by pressing F1
+
+    -UI Entity Manager-
+    This will work quite similarly to the usual Entity system. A bit more convulted in its draw system but not as complicated overall.
+    Since different UI components require different sprite batches (Text and GUI for example), this is where things will get more convulted.
+    
+
+
+
+
+
+Signals
+    - Learn more about delegates and events.
+
+
+
+Scene Management
+
+
+REMINDERS:
+if you change distros and this doesn't work you might rely on dotnet-sdk-3.1 version 3.1.302

@@ -1,0 +1,7 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"/home/daniel/GameDev/MonoRPG/Content/fonts/test_font.spritefont","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/fonts/m5x7_16.xnb","FontDescriptionProcessor","SpriteFontContent",2007,37922,0.2515166
+"/home/daniel/GameDev/MonoRPG/Content/sprites/red_box.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/sprites/red_box.xnb","TextureProcessor","Texture2DContent",206,2133,0.1497154
+"/home/daniel/GameDev/MonoRPG/Content/sprites/temp_chest.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/sprites/temp_chest.xnb","TextureProcessor","Texture2DContent",189,1109,0.1382094
+"/home/daniel/GameDev/MonoRPG/Content/sprites/white_box.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/sprites/white_box.xnb","TextureProcessor","Texture2DContent",175,6229,0.1234663
+"/home/daniel/GameDev/MonoRPG/Content/tilesets/temp_tileset.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/tilesets/temp_tileset.xnb","TextureProcessor","Texture2DContent",510,6229,0.1467915
+"/home/daniel/GameDev/MonoRPG/Content/ui/9splicesprite.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/ui/9splicesprite.xnb","TextureProcessor","Texture2DContent",309,9301,0.1493953

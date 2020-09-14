@@ -1,0 +1,176 @@
+{
+  "name": "MonoRPG",
+  "ogmoVersion": "3.3.0",
+  "levelPaths": ["."],
+  "backgroundColor": "#282c34ff",
+  "gridColor": "#3c4049cc",
+  "anglesRadians": true,
+  "directoryDepth": 5,
+  "layerGridDefaultSize": {"x": 16, "y": 16},
+  "levelDefaultSize": {"x": 320, "y": 240},
+  "levelMinSize": {"x": 128, "y": 128},
+  "levelMaxSize": {"x": 4096, "y": 4096},
+  "levelValues": [],
+  "defaultExportMode": ".json",
+  "compactExport": false,
+  "externalScript": "",
+  "playCommand": "",
+  "entityTags": [],
+  "layers": [
+    {
+      "definition": "tile",
+      "name": "Walls",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "35714645",
+      "exportMode": 1,
+      "arrayMode": 1,
+      "defaultTileset": "TempTileset"
+    },
+    {
+      "definition": "tile",
+      "name": "Floor",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "35780851",
+      "exportMode": 1,
+      "arrayMode": 1,
+      "defaultTileset": "TempTileset"
+    },
+    {
+      "definition": "entity",
+      "name": "Entities",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "51163836",
+      "requiredTags": [],
+      "excludedTags": []
+    }
+  ],
+  "entities": [
+    {
+      "exportID": "46062449",
+      "name": "player",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#0068ffff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": []
+    },
+    {
+      "exportID": "98059062",
+      "name": "chest",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "isLocked", "definition": "Boolean", "defaults": false},
+        {
+          "name": "itemInside",
+          "definition": "Enum",
+          "choices": ["POTION", "ETHER", "DAGGER"],
+          "defaults": 0
+        },
+        {
+          "name": "keyRequired",
+          "definition": "Enum",
+          "choices": ["NONE", "SILVER_KEY", "SKELETON_KEY"],
+          "defaults": 0
+        }
+      ],
+      "texture": "../../Pixeling/temp_chest.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAHdJREFUOI1jYBhowIjM+f3J7D8xmlj5TsH1sSBr3ujwhyhbf38y+w8zhJFUzTDgf4CFgZXvFCMTPkUh584xhJw7h9cguAtIsh4KWPlOMcLDAJsXYLavMTLCkPM/ANGK1wvEABZ8kthsRgcUu2AYGAAPRFi00B0AAB/9JDKhkmQiAAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "32164955",
+      "name": "enemy",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": []
+    }
+  ],
+  "tilesets": [
+    {"label": "TempTileset", "path": "../Content/tilesets/temp_tileset.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAQCAYAAADpunr5AAAAAXNSR0IArs4c6QAAAbhJREFUWIXtmLFuwjAQhj9QMjKwMDCgqi8QVerSvUulvkHVteIZEJlAPAPqi+QRmq1THoAMDDAwMGagSw85ISaxk9KI8EmWLMsnR//5zpfr3N89HibTMTYs5kve3l+sbIXZbNbJrn08PRzy9n5+fZ/srYrv+7ln/TXb7RYAZzIds5gvMXWC2KxWq9I2cRwzGo2MzrkE6/Xaym44HFrZifgADoCpE2wcBjRSfEgLqYqz2WyO8/1+f5zvdjs8zzM+J4oiBoNBaq0rE3FCEbbit50oigBIkiQ1uuqmIieUET+O4xo+97oQ8QXXdXFdF/hNQSq6dFT25l86zege7CYQhiG9Xu/snm7eYjYS6ko7bYqOMAwB6Pf7qZHlJAIE1Ql15fymPsJ1I+ILkm7y0DrghjlBEOTe8nNoHaCmnVvlU0wQBIB5lOe+AVnBy5aobcrxKiK+IFWOWu3oOIkA3W0v87P2Hzm+anvCf36tVEVlxTclFQFFApeNBJVrjwrP81LDlKMDyuZ5Uye0ofIxSTlZHDB/ZG0beELTmnK6Zpxa0ajz7LcnSWJ9tmMrpDjBph3dJPHBvqtZ1RbgB3XmxjmcHf7XAAAAAElFTkSuQmCC", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0}
+  ]
+}

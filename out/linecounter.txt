@@ -1,0 +1,143 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-09-11 16:31:02
+count workspace : /home/daniel/GameDev/MonoRPG
+total files : 113
+total code lines : 15628
+total comment lines : 206
+total blank lines : 534
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |        .csproj|             31|              0|              0|   0.20|
+   |            .cs|           2322|            206|            478|     15|
+   |      .manifest|             34|              0|              9|   0.22|
+   |               |             68|              0|              8|   0.44|
+   |          .json|          12228|              0|             13|     78|
+   |         .cache|             14|              0|              1|  0.090|
+   |         .props|             24|              0|              0|   0.15|
+   |    .spritefont|            116|              0|             14|   0.74|
+   |          .mgcb|             59|              0|             11|   0.38|
+   |          .ogmo|            291|              0|              0|    1.9|
+   |           .txt|             29|              0|              0|   0.19|
+   |     .mgcontent|            402|              0|              0|    2.6|
+   |  .CopyComplete|              0|              0|              0|    0.0|
+   |       .targets|             10|              0|              0|  0.064|
+   -------------------------------------------------------------------------
+app.manifest, code is 34, comment is 0, blank is 9.
+bin/Debug/netcoreapp3.1/Content/fonts/test_font.xnb, it is a binary file.
+bin/Debug/netcoreapp3.1/Content/sprites/red_box.xnb, it is a binary file.
+bin/Debug/netcoreapp3.1/Content/sprites/temp_chest.xnb, it is a binary file.
+bin/Debug/netcoreapp3.1/Content/sprites/white_box.xnb, it is a binary file.
+bin/Debug/netcoreapp3.1/Content/tilesets/temp_tileset.xnb, it is a binary file.
+bin/Debug/netcoreapp3.1/MonoGame.Framework.dll, it is a binary file.
+bin/Debug/netcoreapp3.1/MonoRPG, it is a binary file.
+bin/Debug/netcoreapp3.1/MonoRPG.deps.json, code is 108, comment is 0, blank is 0.
+bin/Debug/netcoreapp3.1/MonoRPG.dll, it is a binary file.
+bin/Debug/netcoreapp3.1/MonoRPG.pdb, it is a binary file.
+bin/Debug/netcoreapp3.1/MonoRPG.runtimeconfig.dev.json, code is 7, comment is 0, blank is 1.
+bin/Debug/netcoreapp3.1/MonoRPG.runtimeconfig.json, code is 12, comment is 0, blank is 0.
+bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/linux-x64/native/libopenal.so.1, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/linux-x64/native/libSDL2-2.0.so.0, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/osx/native/libopenal.1.dylib, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/osx/native/libSDL2-2.0.0.dylib, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/win-x64/native/SDL2.dll, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/win-x64/native/soft_oal.dll, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/win-x86/native/SDL2.dll, it is a binary file.
+bin/Debug/netcoreapp3.1/runtimes/win-x86/native/soft_oal.dll, it is a binary file.
+components/Animation.cs, code is 130, comment is 0, blank is 29.
+components/Attack.cs, code is 16, comment is 0, blank is 2.
+components/ChestComponent.cs, code is 22, comment is 4, blank is 6.
+components/Component.cs, code is 16, comment is 3, blank is 6.
+components/EnemyAI.cs, code is 12, comment is 0, blank is 1.
+components/EnemyController.cs, code is 122, comment is 12, blank is 22.
+components/InteractionComponent.cs, code is 15, comment is 0, blank is 3.
+components/PlayerController.cs, code is 243, comment is 23, blank is 39.
+components/PlayerInteract.cs, code is 67, comment is 4, blank is 13.
+components/SpriteRenderer.cs, code is 46, comment is 2, blank is 9.
+components/Stats.cs, code is 33, comment is 0, blank is 2.
+components/TakeDamage.cs, code is 25, comment is 2, blank is 5.
+components/Transform.cs, code is 17, comment is 25, blank is 6.
+Content/bin/DesktopGL/Content/fonts/test_font.xnb, it is a binary file.
+Content/bin/DesktopGL/Content/sprites/red_box.xnb, it is a binary file.
+Content/bin/DesktopGL/Content/sprites/temp_chest.xnb, it is a binary file.
+Content/bin/DesktopGL/Content/sprites/white_box.xnb, it is a binary file.
+Content/bin/DesktopGL/Content/tilesets/temp_tileset.xnb, it is a binary file.
+Content/bin/DesktopGL/fonts/test_font.xnb, it is a binary file.
+Content/bin/DesktopGL/sprites/red_box.xnb, it is a binary file.
+Content/bin/DesktopGL/sprites/temp_chest.xnb, it is a binary file.
+Content/bin/DesktopGL/sprites/white_box.xnb, it is a binary file.
+Content/bin/DesktopGL/tilesets/temp_tileset.xnb, it is a binary file.
+Content/Content.mgcb, code is 59, comment is 0, blank is 11.
+Content/fonts/File.spritefont, code is 63, comment is 0, blank is 7.
+Content/fonts/test_font.spritefont, code is 53, comment is 0, blank is 7.
+Content/fonts/to_the_bottom.ogmo, code is 115, comment is 0, blank is 0.
+Content/obj/DesktopGL/.mgcontent, code is 20, comment is 0, blank is 0.
+Content/obj/DesktopGL/.mgstats, code is 6, comment is 0, blank is 0.
+Content/obj/DesktopGL/Content/.mgcontent, code is 20, comment is 0, blank is 0.
+Content/obj/DesktopGL/Content/.mgstats, code is 6, comment is 0, blank is 0.
+Content/obj/DesktopGL/Content/fonts/test_font.mgcontent, code is 22, comment is 0, blank is 0.
+Content/obj/DesktopGL/Content/sprites/red_box.mgcontent, code is 42, comment is 0, blank is 0.
+Content/obj/DesktopGL/Content/sprites/temp_chest.mgcontent, code is 42, comment is 0, blank is 0.
+Content/obj/DesktopGL/Content/sprites/white_box.mgcontent, code is 42, comment is 0, blank is 0.
+Content/obj/DesktopGL/Content/tilesets/temp_tileset.mgcontent, code is 42, comment is 0, blank is 0.
+Content/obj/DesktopGL/fonts/File.mgcontent, code is 22, comment is 0, blank is 0.
+Content/obj/DesktopGL/fonts/test_font.mgcontent, code is 22, comment is 0, blank is 0.
+Content/obj/DesktopGL/sprites/red_box.mgcontent, code is 42, comment is 0, blank is 0.
+Content/obj/DesktopGL/sprites/temp_chest.mgcontent, code is 42, comment is 0, blank is 0.
+Content/obj/DesktopGL/sprites/white_box.mgcontent, code is 42, comment is 0, blank is 0.
+Content/obj/DesktopGL/tilesets/temp_tileset.mgcontent, code is 42, comment is 0, blank is 0.
+Content/sprites/red_box.png, it is a binary file.
+Content/sprites/temp_chest.png, it is a binary file.
+Content/sprites/white_box.png, it is a binary file.
+Content/tilesets/temp_tileset.png, it is a binary file.
+entities/Chest.cs, code is 32, comment is 1, blank is 8.
+entities/Enemy.cs, code is 73, comment is 0, blank is 17.
+entities/Entity.cs, code is 78, comment is 12, blank is 18.
+entities/EntityManager.cs, code is 87, comment is 17, blank is 18.
+entities/Player.cs, code is 58, comment is 0, blank is 15.
+Game1.cs, code is 86, comment is 5, blank is 25.
+Icon.bmp, it is a binary file.
+Icon.ico, it is a binary file.
+levels/monorpg.ogmo, code is 176, comment is 0, blank is 0.
+levels/test_dungeon.json, code is 11757, comment is 0, blank is 0.
+MonoRPG.csproj, code is 31, comment is 0, blank is 0.
+obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs, code is 3, comment is 1, blank is 0.
+obj/Debug/netcoreapp3.1/MonoRPG, it is a binary file.
+obj/Debug/netcoreapp3.1/MonoRPG.AssemblyInfo.cs, code is 9, comment is 10, blank is 4.
+obj/Debug/netcoreapp3.1/MonoRPG.AssemblyInfoInputs.cache, code is 1, comment is 0, blank is 0.
+obj/Debug/netcoreapp3.1/MonoRPG.assets.cache, it is a binary file.
+obj/Debug/netcoreapp3.1/MonoRPG.csproj.CopyComplete, code is 0, comment is 0, blank is 0.
+obj/Debug/netcoreapp3.1/MonoRPG.csproj.CoreCompileInputs.cache, code is 1, comment is 0, blank is 0.
+obj/Debug/netcoreapp3.1/MonoRPG.csproj.FileListAbsolute.txt, code is 29, comment is 0, blank is 0.
+obj/Debug/netcoreapp3.1/MonoRPG.csprojAssemblyReference.cache, it is a binary file.
+obj/Debug/netcoreapp3.1/MonoRPG.dll, it is a binary file.
+obj/Debug/netcoreapp3.1/MonoRPG.genruntimeconfig.cache, code is 1, comment is 0, blank is 0.
+obj/Debug/netcoreapp3.1/MonoRPG.pdb, it is a binary file.
+obj/MonoRPG.csproj.nuget.dgspec.json, code is 68, comment is 0, blank is 4.
+obj/MonoRPG.csproj.nuget.g.props, code is 24, comment is 0, blank is 0.
+obj/MonoRPG.csproj.nuget.g.targets, code is 10, comment is 0, blank is 0.
+obj/project.assets.json, code is 276, comment is 0, blank is 8.
+obj/project.nuget.cache, code is 11, comment is 0, blank is 1.
+Program.cs, code is 13, comment is 0, blank is 1.
+systems/camera/Camera.cs, code is 206, comment is 4, blank is 47.
+systems/commands/Command.cs, code is 22, comment is 0, blank is 3.
+systems/globals/Screen.cs, code is 23, comment is 0, blank is 3.
+systems/grid/Grid.cs, code is 91, comment is 0, blank is 14.
+systems/input/Input.cs, code is 77, comment is 0, blank is 19.
+systems/line_of_sight/LineOfSight.cs, code is 61, comment is 2, blank is 18.
+systems/pathfinding/Pathfinder.cs, code is 126, comment is 9, blank is 30.
+systems/signals/Signal.cs, code is 75, comment is 13, blank is 17.
+systems/tilemap/Level.cs, code is 43, comment is 1, blank is 4.
+systems/tilemap/LevelLoader.cs, code is 116, comment is 20, blank is 23.
+systems/tilemap/TilemapEntityLoader.cs, code is 39, comment is 7, blank is 4.
+systems/tilemap/TilemapRenderer.cs, code is 43, comment is 3, blank is 5.
+systems/turn_manager/TurnManager.cs, code is 39, comment is 6, blank is 11.
+systems/tween/Tween.cs, code is 140, comment is 19, blank is 30.
+systems/wait/Wait.cs, code is 18, comment is 1, blank is 1.
+TODO, code is 16, comment is 0, blank is 8.
+===============================================================================
