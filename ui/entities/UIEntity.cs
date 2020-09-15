@@ -23,5 +23,9 @@ namespace MonoRPG
         }
         public virtual void Draw(float deltaTime) { }
         public virtual void DrawText(float deltaTime) { }
+        public void Destroy()
+        {
+            uiEntityManager.RemoveEntity<UIEntity>(this);
+        }
     }
 }

@@ -9,7 +9,10 @@ namespace MonoRPG
         KeyboardState currentKeyState;
         KeyboardState oldKeyState;
         MouseState currentMouseState;
-        MouseState oldMouseState;
+        MouseState currentLeftMouseState;
+        MouseState currentRightMouseState;
+        MouseState oldLeftMouseState;
+        MouseState oldRightMouseState;
         Keys lastKeyPressed = Keys.None;
 
         public enum MouseButton { LEFT, RIGHT, MIDDLE }
@@ -44,30 +47,55 @@ namespace MonoRPG
             return false;
         }
 
-        public bool IsMouseButtonJustPressed(MouseButton _mouseButton)
+        public bool IsMouseButtonPressed(MouseButton _mouseButton)
         {
             currentMouseState = Mouse.GetState();
 
             if (_mouseButton == MouseButton.LEFT)
             {
-                if (oldMouseState.LeftButton == ButtonState.Released && currentMouseState.LeftButton == ButtonState.Pressed)
+                if (currentMouseState.LeftButton == ButtonState.Pressed)
                 {
-                    oldMouseState = currentMouseState;
+                    return true;
+                }
+            }
+            else if (_mouseButton == MouseButton.RIGHT)
+            {
+                if (currentMouseState.RightButton == ButtonState.Pressed)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsMouseButtonJustPressed(MouseButton _mouseButton)
+        { // TODO: odd behavior here. If this function is called twice in a row it cancels the Right button out.
+
+            if (_mouseButton == MouseButton.LEFT)
+            {
+                currentLeftMouseState = Mouse.GetState();
+
+                if (oldLeftMouseState.LeftButton == ButtonState.Released && currentLeftMouseState.LeftButton == ButtonState.Pressed)
+                {
+                    oldLeftMouseState = currentLeftMouseState;
                     return true;
                 }
 
-                oldMouseState = currentMouseState;
+                oldLeftMouseState = currentLeftMouseState;
                 return false;
             }
             else if (_mouseButton == MouseButton.RIGHT)
             {
-                if (oldMouseState.RightButton == ButtonState.Released && currentMouseState.RightButton == ButtonState.Pressed)
+                currentRightMouseState = Mouse.GetState();
+
+                if (oldRightMouseState.RightButton == ButtonState.Released && currentRightMouseState.RightButton == ButtonState.Pressed)
                 {
-                    oldMouseState = currentMouseState;
+                    oldRightMouseState = currentRightMouseState;
                     return true;
                 }
 
-                oldMouseState = currentMouseState;
+                oldRightMouseState = currentRightMouseState;
                 return false;
             }
 

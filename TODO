@@ -1,20 +1,17 @@
 Tasks:
-    UI.
-    -Components-
-    X1. Nine slice sprite.
-    X2. Label
-    X3. Button (Text, Texture, TextureAndText)
+    1. Fix crash when player clicks to move to dead enemy.
+    2. Start work on inventory.
+        - Create a few simple items, like a potion, magic herbs, antidote, and a key.
+        - Create a few weapons and armors.
+        - Naturally include all stats for these items
+        - Also make a simple icon to be displayed for the item.
+    3. Have the chests open and containing items. One chest will be locked and require a key. Also items can be removed from dead enemies.
+        - These will both have the same menu for removing items.
+    4. Start thinking how inventory will work. Will it be classic list style, or will it be more of limited space like in resident evil games.
 
-    -Entities-
-    X1X. Damage indication. A number that appears briefly above and entity's head when damaged.
-    X1. Simple text box that is composed of a nine splice sprite, label, and a text button at bottom that closes text box.
 
     -Debug Console-
     Prints debug messages to a text box which is activated by pressing F1
-
-    -UI Entity Manager-
-    This will work quite similarly to the usual Entity system. A bit more convulted in its draw system but not as complicated overall.
-    Since different UI components require different sprite batches (Text and GUI for example), this is where things will get more convulted.
     
 
 

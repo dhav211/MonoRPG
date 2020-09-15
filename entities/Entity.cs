@@ -21,6 +21,7 @@ namespace MonoRPG
         public Signal TurnEnded { get; private set; } = new Signal();
         public Signal MouseEntered { get; private set; } = new Signal();
         public Signal MouseExited { get; private set; } = new Signal();
+        public Signal MousePressed { get; private set; } = new Signal();
 
 
         public virtual void Update(float deltaTime) 
@@ -30,23 +31,7 @@ namespace MonoRPG
                 component.Update(deltaTime);
             }
 
-            Vector2 mousePosition = input.GetMouseWorldPosition();
-
-            if ((mousePosition.X > ClickRect.X) && (mousePosition.X < ClickRect.X + ClickRect.Width) &&
-                (mousePosition.Y > ClickRect.Y) && (mousePosition.Y < ClickRect.Y + ClickRect.Height))
-            {
-                if (!IsMouseHovered)
-                    MouseEntered.Emit();
-        
-                IsMouseHovered = true;
-            }
-            else
-            {
-                if (IsMouseHovered)
-                    MouseExited.Emit();
-
-                IsMouseHovered = false;
-            }
+            HandleMouseClick();
         }
 
         public virtual void Draw(float deltaTime) { }
@@ -112,6 +97,36 @@ namespace MonoRPG
             Grid.RemoveEntityFromGridNode(_tranform.GridPosition.X, _tranform.GridPosition.Y);
             _tranform.GridPosition = _gridPositionToSet;
             Grid.SetEntityInGridNode(_tranform.GridPosition.X, _tranform.GridPosition.Y, this);
+        }
+
+        ///<summary>
+        /// Checks if mouse is in clicking range, checks for mouse input, and emits all mouse related signals
+        ///</summary>
+        private void HandleMouseClick()
+        {
+            Vector2 mousePosition = input.GetMouseWorldPosition();
+            bool mousePressed = input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) || input.IsMouseButtonJustPressed(Input.MouseButton.RIGHT); 
+
+            if ((mousePosition.X > ClickRect.X) && (mousePosition.X < ClickRect.X + ClickRect.Width) &&
+                (mousePosition.Y > ClickRect.Y) && (mousePosition.Y < ClickRect.Y + ClickRect.Height))
+            {
+                if (!IsMouseHovered)
+                    MouseEntered.Emit();
+        
+                IsMouseHovered = true;
+            }
+            else
+            {
+                if (IsMouseHovered)
+                    MouseExited.Emit();
+
+                IsMouseHovered = false;
+            }
+
+            if (IsMouseHovered && mousePressed)
+            {
+                MousePressed.Emit();
+            }
         }
 
         public virtual void Kill() { }

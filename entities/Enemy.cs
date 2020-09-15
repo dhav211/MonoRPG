@@ -16,6 +16,7 @@ namespace MonoRPG
         AnimationController animation;
         EnemyController enemyController;
         EnemyAI enemyAI;
+        EnemyStatPopupController enemyStatPopupController;
         public Player Player { get; private set; }
 
         public Action _onTurnEnded { get; private set; }
@@ -33,6 +34,7 @@ namespace MonoRPG
             animation = new AnimationController(this);
             enemyController = new EnemyController(this);
             enemyAI = new EnemyAI(this);
+            enemyStatPopupController = new EnemyStatPopupController(this);
 
             TurnManager.Entities.Add(this);
 
@@ -44,7 +46,7 @@ namespace MonoRPG
             Grid.SetEntityInGridNode(transform.GridPosition.X, transform.GridPosition.Y, this);
 
             Name = "Enemy";
-            stats.SetStats("Enemy", 1, 10, 5, 3, 3, 3, 3);
+            stats.SetStats(Name, 1, 10, 5, 3, 3, 3, 3);
             interactionComponent.MainInteraction = InteractionComponent.InteractionType.ATTACK;
             interactionComponent.Interactions.Add(InteractionComponent.InteractionType.ATTACK);
 
