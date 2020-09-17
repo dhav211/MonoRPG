@@ -118,17 +118,12 @@
       "values": [
         {"name": "isLocked", "definition": "Boolean", "defaults": false},
         {
-          "name": "itemInside",
-          "definition": "Enum",
-          "choices": ["POTION", "ETHER", "DAGGER"],
-          "defaults": 0
-        },
-        {
           "name": "keyRequired",
           "definition": "Enum",
           "choices": ["NONE", "SILVER_KEY", "SKELETON_KEY"],
           "defaults": 0
-        }
+        },
+        {"name": "chest_id", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100}
       ],
       "texture": "../../Pixeling/temp_chest.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAHdJREFUOI1jYBhowIjM+f3J7D8xmlj5TsH1sSBr3ujwhyhbf38y+w8zhJFUzTDgf4CFgZXvFCMTPkUh584xhJw7h9cguAtIsh4KWPlOMcLDAJsXYLavMTLCkPM/ANGK1wvEABZ8kthsRgcUu2AYGAAPRFi00B0AAB/9JDKhkmQiAAAAAElFTkSuQmCC"

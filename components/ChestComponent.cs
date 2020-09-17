@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MonoRPG
 {
     public class ChestComponent : Component
@@ -5,8 +7,9 @@ namespace MonoRPG
         public bool IsLocked { get; private set; }
 
         // TODO: Changes these to an enum value when inventory is created
-        public string ItemInside { get; private set; }
         public string KeyRequired { get; private set; }
+        public int ChestID { get; private set; }
+        public List<Item> ItemsInside { get; private set; } = new List<Item>();
 
         public ChestComponent(Entity _owner) : base(_owner)
         {
@@ -15,10 +18,10 @@ namespace MonoRPG
 
         public override void Update(float deltaTime) { }
 
-        public void SetValues(bool _isLocked, string _itemInside, string _keyRequired)
+        public void SetValues(bool _isLocked, int _chestID, string _keyRequired)
         {
             IsLocked = _isLocked;
-            ItemInside = _itemInside;
+            ChestID = _chestID;
             KeyRequired = _keyRequired;
         }
 

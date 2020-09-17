@@ -11738,7 +11738,7 @@
           "y": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"isLocked": true, "itemInside": "ETHER", "keyRequired": "SILVER_KEY"}
+          "values": {"isLocked": true, "keyRequired": "SILVER_KEY", "chest_id": 1}
         },
         {
           "name": "chest",
@@ -11748,7 +11748,7 @@
           "y": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"isLocked": false, "itemInside": "POTION", "keyRequired": "NONE"}
+          "values": {"isLocked": false, "keyRequired": "NONE", "chest_id": 0}
         },
         {"name": "enemy", "id": 3, "_eid": "32164955", "x": 304, "y": 96, "originX": 0, "originY": 0}
       ]

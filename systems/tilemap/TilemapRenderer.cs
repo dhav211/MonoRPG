@@ -32,6 +32,14 @@ namespace MonoRPG
             currentState = RendererState.LEVEL_LOADED;
         }
 
+        public void ClearTilemap()
+        {
+            sourceRectangles = new List<List<Rectangle>>();
+            destinationRectangles = new List<List<Rectangle>>();
+            tileset = null;
+            currentState = RendererState.EMPTY;
+        }
+
         public void Draw()
         {
             if (currentState == RendererState.LEVEL_LOADED)

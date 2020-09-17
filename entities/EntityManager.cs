@@ -115,7 +115,7 @@ namespace MonoRPG
         ///</summary>
         public void RemoveAllEntities()
         {
-
+            entities = new List<Entity>();
         }
     }
 }

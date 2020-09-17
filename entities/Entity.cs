@@ -90,13 +90,23 @@ namespace MonoRPG
         }
 
         ///<summary>
+        /// Sets entity's grid position in it's transform component, based on it's current Position, then updates the Grid filling the space with the entity.
+        ///</summary>
+        public void SetGridPosition(Transform _transform)
+        {
+            Grid.RemoveEntityFromGridNode(_transform.GridPosition.X, _transform.GridPosition.Y);
+            _transform.GridPosition = new Point((int)Math.Floor(_transform.Position.X) / 16, (int)Math.Floor(_transform.Position.Y / 16));
+            Grid.SetEntityInGridNode(_transform.GridPosition.X, _transform.GridPosition.Y, this);
+        }
+
+        ///<summary>
         /// Sets entity's grid position in it's transform component, then updates the Grid filling the space with the entity.
         ///</summary>
-        public void SetGridPosition(Transform _tranform, Point _gridPositionToSet)
+        public void SetGridPosition(Transform _transform, Point _gridPositionToSet)
         {
-            Grid.RemoveEntityFromGridNode(_tranform.GridPosition.X, _tranform.GridPosition.Y);
-            _tranform.GridPosition = _gridPositionToSet;
-            Grid.SetEntityInGridNode(_tranform.GridPosition.X, _tranform.GridPosition.Y, this);
+            Grid.RemoveEntityFromGridNode(_transform.GridPosition.X, _transform.GridPosition.Y);
+            _transform.GridPosition = _gridPositionToSet;
+            Grid.SetEntityInGridNode(_transform.GridPosition.X, _transform.GridPosition.Y, this);
         }
 
         ///<summary>

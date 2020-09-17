@@ -22,7 +22,8 @@ namespace MonoRPG
                 component.Initialize();
 
             transform.Position = _position;
-            chestComponent.SetValues(_entityValues.isLocked, _entityValues.itemInside, _entityValues.keyRequired);
+            SetGridPosition(transform, new Point((int)Math.Floor(transform.Position.X) / 16, (int)Math.Floor(transform.Position.Y / 16)));
+            chestComponent.SetValues(_entityValues.isLocked, _entityValues.chest_id, _entityValues.keyRequired);
 
             IsAlive = true;
         }

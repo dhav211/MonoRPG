@@ -41,7 +41,7 @@ namespace MonoRPG
         {
             //Chests
             public bool isLocked { get; set; }
-            public string itemInside { get; set; }
+            public int chest_id { get; set; }
             public string keyRequired { get; set; }
         }
     }

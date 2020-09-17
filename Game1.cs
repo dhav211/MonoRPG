@@ -69,7 +69,10 @@ namespace MonoRPG
             EntityCreator.Initialize(entityManager, uIEntityManager);
             tilemapRenderer = new TilemapRenderer(_spriteBatch);
             levelLoader = new LevelLoader(tilemapRenderer, new TilemapEntityLoader(entityManager), grid, entityManager);
-            levelLoader.LoadLevel("levels/test_dungeon.json", this.Content.Load<Texture2D>("tilesets/temp_tileset"));
+            SceneManager.SetSceneManager(levelLoader, Content, entityManager, tilemapRenderer);
+
+            SceneManager.LoadScene("TestDungeonL1");
+            //levelLoader.LoadLevel("levels/test_dungeon.json", this.Content.Load<Texture2D>("tilesets/temp_tileset"));
             // TODO: use this.Content to load your game content here
         }
   
