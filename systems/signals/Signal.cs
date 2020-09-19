@@ -30,7 +30,7 @@ namespace MonoRPG
         ///<summary>
         /// Listeners will be notified and they will run their set functions with given parameters
         ///</summary>
-        public void Emit(object[] _args = null)
+        public void Emit(params object[] _args)
         {
             awaiter.NotifyAwaiter();
 

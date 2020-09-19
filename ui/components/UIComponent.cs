@@ -3,6 +3,7 @@ namespace MonoRPG
     public class UIComponent
     {
         protected UIEntity owner;
+        public bool IsVisible { get; set; } = true;
 
         public UIComponent(UIEntity _owner)
         {

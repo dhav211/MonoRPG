@@ -7,9 +7,11 @@ namespace MonoRPG
 {
     public class TextButton : UIComponent
     {
+        public enum TextAlignment { LEFT, CENTER, RIGHT }
+        TextAlignment textAlignment = TextAlignment.CENTER;
+
         SpriteFont spriteFont;
         SpriteBatch spriteBatch;
-        Input input;
 
         public Rectangle DestinationRect { get; private set; }
         public Vector2 Position { get; private set; }
@@ -32,17 +34,28 @@ namespace MonoRPG
             MouseExited = new Signal();
         }
 
-        public void Initialize(SpriteFont _spriteFont, string _text, Vector2 _position, Color _color)
+        public void Initialize(SpriteFont _spriteFont, string _text, Vector2 _position, Color _color, TextAlignment _alignment = TextAlignment.CENTER)
         {
             spriteFont = _spriteFont;
             Text = _text;
             color = _color;
-            input = new Input();
+            textAlignment = _alignment;
+
+            float alignmentAdjuster = 0;
 
             //TODO: Right now this is simply centers the label at its orgin, have an alignment enum that aligns it based up the width of destination rect
             Vector2 textWidth = spriteFont.MeasureString(Text);
+
+            if (textAlignment == TextAlignment.LEFT)
+            {
+                alignmentAdjuster = 0;
+            }
+            else if (textAlignment == TextAlignment.CENTER)
+            {
+                alignmentAdjuster = textWidth.X / 2;
+            }
             
-            Position = new Vector2(((_position.X + owner.DestinationRect.X) * Screen.Scale) - (int)(textWidth.X / 2), (_position.Y + owner.DestinationRect.Y) * Screen.Scale);
+            Position = new Vector2(((_position.X + owner.DestinationRect.X) * Screen.Scale) - alignmentAdjuster, (_position.Y + owner.DestinationRect.Y) * Screen.Scale);
             clickRect = new Rectangle((int)Position.X / Screen.Scale, (int)Position.Y / Screen.Scale, (int)textWidth.X, (int)textWidth.Y);
         }
 
@@ -52,9 +65,9 @@ namespace MonoRPG
 
             // If camera effects position of parent then it would effect where the mouse click positions ends up at
             if (owner.IsScrollable)
-                mousePosition = input.GetMouseWorldPosition();
+                mousePosition = Input.GetMouseWorldPosition();
             else
-                mousePosition = input.GetMousePosition();
+                mousePosition = Input.GetMousePosition();
             
             // Check to see if mouse click is within the clickRect
             if ((mousePosition.X > clickRect.X) && (mousePosition.X < clickRect.X + clickRect.Width) &&
@@ -74,7 +87,7 @@ namespace MonoRPG
             }
 
             // Once button is hovered and mouse button is pressed then emit its pressed signal
-            if (input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && isHovered)
+            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && isHovered)
             {
                 Pressed.Emit();
             }
@@ -82,6 +95,9 @@ namespace MonoRPG
 
         public override void Draw(float deltaTime)
         {
+            if (!IsVisible)
+                return;
+
             spriteBatch.DrawString(spriteFont, Text, Position, color);
         }
     }

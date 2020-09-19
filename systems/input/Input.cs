@@ -4,117 +4,84 @@ using System;
 
 namespace MonoRPG
 {
-    public class Input
+    public static class Input
     {
-        KeyboardState currentKeyState;
-        KeyboardState oldKeyState;
-        MouseState currentMouseState;
-        MouseState currentLeftMouseState;
-        MouseState currentRightMouseState;
-        MouseState oldLeftMouseState;
-        MouseState oldRightMouseState;
-        Keys lastKeyPressed = Keys.None;
+        static KeyboardState currentKeyState;
+        static KeyboardState oldKeyState;
+        static MouseState currentMouseState;
+        static MouseState oldMouseState;
 
         public enum MouseButton { LEFT, RIGHT, MIDDLE }
 
-        public bool IsKeyPressed(Keys _key)
+        public static void GetKeyboardState()
         {
+            oldKeyState = currentKeyState;
             currentKeyState = Keyboard.GetState();
-
-            if (currentKeyState.IsKeyDown(_key))
-            {
-                return true;
-            }
-
-            return false;
         }
 
-        public bool IsKeyJustPressed(Keys _key)
+        public static void GetMouseState()
         {
-            currentKeyState = Keyboard.GetState();
-
-            if (lastKeyPressed != _key && currentKeyState.IsKeyDown(_key))
-            {
-                lastKeyPressed = _key;
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool IsKeyReleased(Keys _key)
-        {
-            return false;
-        }
-
-        public bool IsMouseButtonPressed(MouseButton _mouseButton)
-        {
+            oldMouseState = currentMouseState;
             currentMouseState = Mouse.GetState();
+        }
 
+        public static bool IsKeyPressed(Keys _key)
+        {
+            return currentKeyState.IsKeyDown(_key);
+        }
+
+        public static bool IsKeyJustPressed(Keys _key)
+        {
+            return currentKeyState.IsKeyDown(_key) && !oldKeyState.IsKeyDown(_key);
+        }
+
+        public static  bool IsKeyReleased(Keys _key)
+        {
+            return currentKeyState.IsKeyUp(_key) && !oldKeyState.IsKeyUp(_key);
+        }
+
+        public static  bool IsMouseButtonPressed(MouseButton _mouseButton)
+        {
             if (_mouseButton == MouseButton.LEFT)
             {
-                if (currentMouseState.LeftButton == ButtonState.Pressed)
-                {
-                    return true;
-                }
+                return currentMouseState.LeftButton == ButtonState.Pressed;
             }
             else if (_mouseButton == MouseButton.RIGHT)
             {
-                if (currentMouseState.RightButton == ButtonState.Pressed)
-                {
-                    return true;
-                }
+                return currentMouseState.RightButton == ButtonState.Pressed;
             }
 
             return false;
         }
 
-        public bool IsMouseButtonJustPressed(MouseButton _mouseButton)
+        public static  bool IsMouseButtonJustPressed(MouseButton _mouseButton)
         { // TODO: odd behavior here. If this function is called twice in a row it cancels the Right button out.
 
             if (_mouseButton == MouseButton.LEFT)
             {
-                currentLeftMouseState = Mouse.GetState();
-
-                if (oldLeftMouseState.LeftButton == ButtonState.Released && currentLeftMouseState.LeftButton == ButtonState.Pressed)
-                {
-                    oldLeftMouseState = currentLeftMouseState;
-                    return true;
-                }
-
-                oldLeftMouseState = currentLeftMouseState;
-                return false;
+                return currentMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed;
             }
             else if (_mouseButton == MouseButton.RIGHT)
             {
-                currentRightMouseState = Mouse.GetState();
-
-                if (oldRightMouseState.RightButton == ButtonState.Released && currentRightMouseState.RightButton == ButtonState.Pressed)
-                {
-                    oldRightMouseState = currentRightMouseState;
-                    return true;
-                }
-
-                oldRightMouseState = currentRightMouseState;
-                return false;
+                return currentMouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton != ButtonState.Pressed;
             }
 
             return false;
         }
 
-        public Vector2 GetMousePosition()
+        public static  Vector2 GetMousePosition()
         {
             MouseState currentMouseState = Mouse.GetState();
 
             return new Vector2(currentMouseState.X / Screen.Scale, currentMouseState.Y / Screen.Scale);
         }
 
-        public Vector2 GetMouseWorldPosition()
+        public static  Vector2 GetMouseWorldPosition()
         {
             return Screen.Camera.ScreenToWorld(GetMousePosition());
         }
 
-        public Point GetMouseGridPosition()
+        public static  Point GetMouseGridPosition()
         {
             Vector2 mouseWorldPosition = GetMouseWorldPosition();
 

@@ -1,6 +1,14 @@
 Tasks:
     1. Fix crash when player clicks to move to dead enemy.
-    
+    2. In test dungeon scene, create a two chest variables, then use the entity manager to set those chests, this will be a somewhat dumb method right now
+        basically looping thru them and checking the chest_id variable. While this is happening, put the required items within.
+        - This will become the basis for most of the scene creation, since objects are quite limited in ogmo, this will have to make due.
+    3. When player walks up to chest and opens it, remove all items from chest and add to inventory, there will be one big list with all items. and then seperate
+        lists with them sorted.
+    4. Start work on that inventory buddy
+
+    Change how the interaction component works. Right now it works off enums. I think I change that into a dictionary<string, delegate>. So the player interaction
+    script can pull from that and avoid a lot of messy if statements in the future. The first interaction will be the main of course
     
 
 

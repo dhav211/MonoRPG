@@ -5,9 +5,43 @@ namespace MonoRPG
         public string Name { get; set; }
         public int LVL { get; set; }
         public int MaxHP { get; set; }
-        public int HP { get; set; }
+        int hp;
+        public int HP
+        {
+            get { return hp; }
+            set
+            {
+                hp = value;
+
+                if (hp < 0)
+                {
+                    hp = 0;
+                }
+                else if (hp > MaxHP)
+                {
+                    hp = MaxHP;
+                }
+            }
+        }
         public int MaxMP { get; set; }
-        public int MP { get; set; }
+        int mp;
+        public int MP
+        {
+            get { return mp; }
+            set
+            {
+                mp = value;
+
+                if (mp < 0)
+                {
+                    mp = 0;
+                }
+                else if (mp > MaxMP)
+                {
+                    mp = MaxMP;
+                }
+            }
+        }
         public int ATK { get; set; }
         public int DEF { get; set; }
         public int INT { get; set; }
@@ -22,10 +56,10 @@ namespace MonoRPG
         {
             Name = _name;
             LVL = _lvl;
-            HP = _hp;
             MaxHP = _hp;
-            MP = _mp;
+            HP = _hp;
             MaxMP = _mp;
+            MP = _mp;
             ATK = _atk;
             DEF = _def;
             INT = _int;

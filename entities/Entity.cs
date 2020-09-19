@@ -7,10 +7,9 @@ namespace MonoRPG
     public class Entity
     {
         public List<Component> Components { get; private set; } = new List<Component>();
-        protected EntityManager entityManager;
+        public EntityManager entityManager { get; private set; }
         public MapGrid Grid { get; private set; }
         public TurnManager TurnManager { get; private set; }
-        Input input = new Input();
         public string Name { get; set; }
         public bool IsAlive { get; set; } = true;
         public Point Size { get; set; } = new Point(16,16);
@@ -51,7 +50,7 @@ namespace MonoRPG
         ///<summary>
         /// Returns the component of given type from entity
         ///</summary>
-        public Component GetComponent<T>() where T : Component
+        public T GetComponent<T>() where T : Component
         {
             Type componentType = typeof(T);
 
@@ -59,7 +58,7 @@ namespace MonoRPG
             {
                 if (component.GetType() == componentType)
                 {
-                    return component;
+                    return component as T;
                 }
             }
 
@@ -114,8 +113,8 @@ namespace MonoRPG
         ///</summary>
         private void HandleMouseClick()
         {
-            Vector2 mousePosition = input.GetMouseWorldPosition();
-            bool mousePressed = input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) || input.IsMouseButtonJustPressed(Input.MouseButton.RIGHT); 
+            Vector2 mousePosition = Input.GetMouseWorldPosition();
+            bool mousePressed = Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) || Input.IsMouseButtonJustPressed(Input.MouseButton.RIGHT); 
 
             if ((mousePosition.X > ClickRect.X) && (mousePosition.X < ClickRect.X + ClickRect.Width) &&
                 (mousePosition.Y > ClickRect.Y) && (mousePosition.Y < ClickRect.Y + ClickRect.Height))

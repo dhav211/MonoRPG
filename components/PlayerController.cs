@@ -14,7 +14,6 @@ namespace MonoRPG
         Tween tween;
         Camera camera;
         Pathfinder pathfinder;
-        Input input;
 
         public enum State { STANDING, MOVING, FOLLOW_PATH, INTERACTING, WAITING_FOR_TURN }
         public State CurrentState { get; set; } = State.STANDING;
@@ -33,7 +32,6 @@ namespace MonoRPG
 
             tween = new Tween();
             pathfinder = new Pathfinder(owner.Grid);
-            input = new Input();
 
             Player player = owner as Player;
             camera = player.Camera;
@@ -61,14 +59,21 @@ namespace MonoRPG
             if (CurrentState == State.STANDING && owner.IsEntitiesTurn())
             {
                 animation.Play("idle");
-                MouseMove();
-                KeyboardMove();
-                KeyboardInteract();
+
+                if (GameState.CanPlayerMove())
+                {
+                    MouseMove();
+                    KeyboardInteract();
+                    KeyboardMove();
+                }
             }
             else if (CurrentState == State.MOVING)
             {
                 animation.Play("walk");
-                transform.Position = tween.TweenVector2(transform.Position, deltaTime);
+                if (GameState.CanPlayerMove())
+                {
+                    transform.Position = tween.TweenVector2(transform.Position, deltaTime);
+                }
 
                 // TODO create a cancel path to follow fucntion
             }
@@ -99,15 +104,15 @@ namespace MonoRPG
 
         private void MouseMove()
         {
-            if (input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && owner.Grid.IsNodeWalkable(input.GetMouseGridPosition().X, input.GetMouseGridPosition().Y))
+            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && owner.Grid.IsNodeWalkable(Input.GetMouseGridPosition().X, Input.GetMouseGridPosition().Y))
             {
-                SetPathToFollow(input.GetMouseGridPosition());
+                SetPathToFollow(Input.GetMouseGridPosition());
                 currentMoveDirection = PathToFollow[0] - transform.GridPosition;
                 PathToFollow.RemoveAt(0);
                 MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
 
-                if (owner.Grid.IsEntityOcuppyingGridPosition(input.GetMouseGridPosition()))
-                    TargetToFollow = owner.Grid.GetEntityInGridPosition(input.GetMouseGridPosition());
+                if (owner.Grid.IsEntityOcuppyingGridPosition(Input.GetMouseGridPosition()))
+                    TargetToFollow = owner.Grid.GetEntityInGridPosition(Input.GetMouseGridPosition());
                 else
                     TargetToFollow = null; // No entity was clicked so make sure nothing is being tracked
             }
@@ -118,10 +123,10 @@ namespace MonoRPG
         ///</summary>
         private void KeyboardMove()
         {
-            bool up = input.IsKeyPressed(Keys.W) || input.IsKeyPressed(Keys.Up);
-            bool down = input.IsKeyPressed(Keys.S) || input.IsKeyPressed(Keys.Down);
-            bool left = input.IsKeyPressed(Keys.A) || input.IsKeyPressed(Keys.Left);
-            bool right = input.IsKeyPressed(Keys.D) || input.IsKeyPressed(Keys.Right);
+            bool up = Input.IsKeyPressed(Keys.W) || Input.IsKeyPressed(Keys.Up);
+            bool down = Input.IsKeyPressed(Keys.S) || Input.IsKeyPressed(Keys.Down);
+            bool left = Input.IsKeyPressed(Keys.A) || Input.IsKeyPressed(Keys.Left);
+            bool right = Input.IsKeyPressed(Keys.D) || Input.IsKeyPressed(Keys.Right);
 
             if (up && down)
                 up = down = false;
@@ -153,10 +158,10 @@ namespace MonoRPG
         private void KeyboardInteract()
         {
             Entity entityToInteract = null;
-            bool up = input.IsKeyPressed(Keys.W) || input.IsKeyPressed(Keys.Up);
-            bool down = input.IsKeyPressed(Keys.S) || input.IsKeyPressed(Keys.Down);
-            bool left = input.IsKeyPressed(Keys.A) || input.IsKeyPressed(Keys.Left);
-            bool right = input.IsKeyPressed(Keys.D) || input.IsKeyPressed(Keys.Right);
+            bool up = Input.IsKeyJustPressed(Keys.W) || Input.IsKeyJustPressed(Keys.Up);
+            bool down = Input.IsKeyJustPressed(Keys.S) || Input.IsKeyJustPressed(Keys.Down);
+            bool left = Input.IsKeyJustPressed(Keys.A) || Input.IsKeyJustPressed(Keys.Left);
+            bool right = Input.IsKeyJustPressed(Keys.D) || Input.IsKeyJustPressed(Keys.Right);
 
             if (up && down)
                 up = down = false;

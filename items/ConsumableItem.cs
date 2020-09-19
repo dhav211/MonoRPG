@@ -9,12 +9,16 @@ namespace MonoRPG
 
         public int Strength { get; set; }
 
-        public virtual void Use() { }
+        public virtual void Use(Entity _entity) { }
 
-        public void ChangeHP(Entity _entity, int _amount)
+        public void ChangeHP(Stats _entityStats, int _amount)
         {
-            Stats stats = _entity.GetComponent<Stats>() as Stats;
-            stats.HP += _amount;
+            _entityStats.HP += _amount;
+        }
+
+        public void ChangeMP(Stats _entityStats, int _amount)
+        {
+            _entityStats.MP += _amount;
         }
     }
 
@@ -25,6 +29,13 @@ namespace MonoRPG
             Name = "Small Potion";
             Description = "A bitter potion hardly worth drinking.";
             Strength = 15;
+            Weight = 1;
+        }
+
+        public override void Use(Entity _entity)
+        {
+            Stats entityStats = _entity.GetComponent<Stats>();
+            ChangeHP(entityStats, Strength);
         }
     }
 
@@ -35,6 +46,13 @@ namespace MonoRPG
             Name = "Large Potion";
             Description = "Just as bitter, but open your throat and it will flow down quick.";
             Strength = 50;
+            Weight = 3;
+        }
+
+        public override void Use(Entity _entity)
+        {
+            Stats entityStats = _entity.GetComponent<Stats>();
+            ChangeHP(entityStats, Strength);
         }
     }
 
@@ -45,6 +63,13 @@ namespace MonoRPG
             Name = "Magic Herb";
             Description = "Smells potent, but honestly you won't notice too much of an effect.";
             Strength = 10;
+            Weight = .25f;
+        }
+
+        public override void Use(Entity _entity)
+        {
+            Stats entityStats = _entity.GetComponent<Stats>();
+            ChangeMP(entityStats, Strength);
         }
     }
 }

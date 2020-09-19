@@ -19,8 +19,6 @@ namespace MonoRPG
         private Vector2 origin = Vector2.Zero;
         private bool hasChanged;
 
-        private Input input = new Input();
-
         private const float MOVE_SPEED = 100f;
 
         public Viewport Viewport { get; set; }
@@ -234,7 +232,7 @@ namespace MonoRPG
 
         private void MoveCamera(float deltaTime)
         {
-            Vector2 mousePosition = input.GetMousePosition();
+            Vector2 mousePosition = Input.GetMousePosition();
 
             if (mousePosition.X > Screen.Width * .95)
             {

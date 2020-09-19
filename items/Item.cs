@@ -11,5 +11,7 @@ namespace MonoRPG
 
         public enum ItemType { CONSUMABLE, EQUIPMENT, KEY, BATTLE}
         public ItemType Item_Type { get; set; }
+
+        public void Use() { }
     }
 }

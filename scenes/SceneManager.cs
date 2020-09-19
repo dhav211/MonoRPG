@@ -20,6 +20,7 @@ namespace MonoRPG
 
             Scene sceneToLoad = GetScene(_sceneName);
             LevelLoader.LoadLevel(sceneToLoad.LevelAddress, ContentManager.Load<Texture2D>(sceneToLoad.TilesetAddress));
+            sceneToLoad.SetEntities(EntityManager);
             CurrentScene = sceneToLoad;
         }
 

@@ -14,14 +14,16 @@ namespace MonoRPG
         public MapGrid Grid { get; private set; }
         public Camera Camera { get; private set; }
         public TurnManager TurnManager { get; private set; }
+        public Inventory Inventory { get; private set; }
 
-        public EntityManager(ContentManager _content, SpriteBatch _spriteBatch, MapGrid _grid, Camera _camera, TurnManager _turnManager)
+        public EntityManager(ContentManager _content, SpriteBatch _spriteBatch, MapGrid _grid, Camera _camera, TurnManager _turnManager, Inventory _inventory)
         {
             ContentManager = _content;
             SpriteBatch = _spriteBatch;
             Grid = _grid;
             Camera = _camera;
             TurnManager = _turnManager;
+            Inventory = _inventory;
         }
 
         public void Update(float deltaTime)
@@ -64,12 +66,12 @@ namespace MonoRPG
         ///<summary>
         /// Returns the first entity in list of given type
         ///</summary>
-        public Entity GetEntityOfType<T>() where T : Entity  // TODO: Wrap these in try catch statements
+        public T GetEntityOfType<T>() where T : Entity  // TODO: Wrap these in try catch statements
         {
             foreach (Entity entity in entities)
             {
                 if (entity is T)
-                    return entity;
+                    return entity as T;
             }
 
             return null;
@@ -91,15 +93,41 @@ namespace MonoRPG
             return entitiesToReturn;
         }
 
-        public List<Entity> GetEntitiesWithComponent<T>(T _component) where T : Component
+        public List<E> GetEntitiesWithComponent<T,E>() where T : Component where E : Entity
         {
-            return new List<Entity>();
+            List<E> entitiesToReturn = new List<E>();
+
+            for (int i = 0; i < entities.Count; ++i)
+            {
+                if (entities[i].HasComponent<T>())
+                {
+                    entitiesToReturn.Add(entities[i] as E);
+                }
+            }
+
+            return entitiesToReturn;
         }
 
         public List<Entity> GetEntitiesByTag(string _tag)
         {
             //run a for loop thru entities checking each ones tag, if it lines up with parameter then return it
             return new List<Entity>();
+        }
+
+
+        public List<T> GetComponents<T>() where T : Component
+        {
+            List<T> componentsToReturn = new List<T>();
+
+            for (int i = 0; i < entities.Count; ++i)
+            {
+                if (entities[i].HasComponent<T>())
+                {
+                    componentsToReturn.Add(entities[i].GetComponent<T>());
+                }
+            }
+
+            return componentsToReturn;
         }
 
         ///<summary>

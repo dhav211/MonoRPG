@@ -10,7 +10,8 @@ namespace MonoRPG
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
         public Rectangle DestinationRect { get; private set; }
-        public string Text { get; private set; }
+        public Vector2 Position { get; private set; }
+        public string Text { get; set; }
         Color color;
 
         //bool isWordWrapEnabled = false;
@@ -27,6 +28,7 @@ namespace MonoRPG
                                             (_destinationRect.Y + owner.DestinationRect.Y) * Screen.Scale, 
                                             _destinationRect.Width * Screen.Scale, 
                                             _destinationRect.Height * Screen.Scale);
+            Position = new Vector2(DestinationRect.X, DestinationRect.Y);
             spriteFont = _spriteFont;
             Text = _text;
             color = _color;
@@ -34,10 +36,21 @@ namespace MonoRPG
             if (_wordWrap)
                 Text = WrapText();
         }
+
+        public void Initialize(SpriteFont _spriteFont, Vector2 _position, string _text, Color _color)
+        {
+            Position = new Vector2((_position.X + owner.DestinationRect.X) * Screen.Scale, (_position.Y + owner.DestinationRect.Y) * Screen.Scale);
+            spriteFont = _spriteFont;
+            Text = _text;
+            color = _color;
+        }
         
         public override void Draw(float deltaTime)
         {
-            spriteBatch.DrawString(spriteFont, Text, new Vector2(DestinationRect.X, DestinationRect.Y), color);
+            if (!IsVisible)
+                return;
+
+            spriteBatch.DrawString(spriteFont, Text, new Vector2(Position.X, Position.Y), color);
         }
 
         ///<summary>

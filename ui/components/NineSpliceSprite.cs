@@ -43,6 +43,9 @@ namespace MonoRPG
 
         public override void Draw(float deltaTime)
         {
+            if (!IsVisible)
+                return;
+                
             //TODO: Right now this only works for stretched expand, for tiled expand it will be a bit more complicated.
             foreach (NineSpliceSpriteSection section in sections)
             {

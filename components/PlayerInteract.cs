@@ -6,7 +6,6 @@ namespace MonoRPG
     public class PlayerInteract : Component
     {
         PlayerController playerController;
-        Input input;
 
         public Command command { get; set; } = new Command();
 
@@ -16,17 +15,16 @@ namespace MonoRPG
         }
         public override void Initialize()
         {
-            playerController = owner.GetComponent<PlayerController>() as PlayerController;
-            input = new Input();
+            playerController = owner.GetComponent<PlayerController>();
         }
 
         public override void Update(float deltaTime)
         {
-            if (input.IsMouseButtonJustPressed(Input.MouseButton.LEFT))
+            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && GameState.CanPlayerMove())
             {
                 // TODO: refactor this so it is not only used here but in the player controller script
                 Entity entityClicked = null;
-                Point gridPositionClicked = input.GetMouseGridPosition();
+                Point gridPositionClicked = Input.GetMouseGridPosition();
 
                 if (!owner.Grid.IsOutOfBounds(gridPositionClicked.X, gridPositionClicked.Y))
                     entityClicked = owner.Grid.GetEntityInGridPosition(gridPositionClicked);
@@ -48,7 +46,7 @@ namespace MonoRPG
                     }
                     else
                     {
-                        Transform entityTransform = entityClicked.GetComponent<Transform>() as Transform;
+                        Transform entityTransform = entityClicked.GetComponent<Transform>();
                         playerController.SetPathToFollow(entityTransform.GridPosition);
                         playerController.CurrentState = PlayerController.State.FOLLOW_PATH;
                     }
@@ -69,9 +67,16 @@ namespace MonoRPG
             {
                 if (entityInteraction.MainInteraction == InteractionComponent.InteractionType.ATTACK)
                 {
-                    Attack attack = owner.GetComponent<Attack>() as Attack;
+                    Attack attack = owner.GetComponent<Attack>();
                     Action<Stats, Stats, TakeDamage> attackAction = attack.DealPhysicalDamage;
                     commandToReturn.SetCommand(attackAction, owner.GetComponent<Stats>(), _entityToInteract.GetComponent<Stats>(), _entityToInteract.GetComponent<TakeDamage>());
+                }
+
+                else if (entityInteraction.MainInteraction == InteractionComponent.InteractionType.OPEN_CHEST)
+                {
+                    ChestComponent chest = _entityToInteract.GetComponent<ChestComponent>();
+                    Action openChestAction = chest.Open;
+                    commandToReturn.SetCommand(openChestAction);
                 }
             }
 
