@@ -78,7 +78,13 @@ namespace MonoRPG
         public bool IsEntityOcuppyingGridPosition(Point _gridPosition)
         {
             if (Grid[_gridPosition.X, _gridPosition.Y].OccupyingEntity != null)
+            {
+                if (!Grid[_gridPosition.X, _gridPosition.Y].OccupyingEntity.IsAlive)
+                {
+                    return false;
+                }
                 return true;
+            }
             else
                 return false;
         }

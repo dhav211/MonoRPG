@@ -26,14 +26,6 @@ namespace MonoRPG
             while (openList.Count > 0)
             {
                 PathfinderNode currentNode = openList[0];
-                // check to see if the current node is the end node.
-                    // if it is then retrace the parents back to find the start and send that list back
-                // set the current node by looping through through openlist comparing cost, lowest cost will be current node
-                // Search the surrounding nodes, if they are walkable or the same grid position as end node, 
-                // create the pathfinding node set the parent and cost
-                //then add them to a children list
-                // check to see if the children are already in the open and closed list
-                // if they are not then add them to the open list
 
                 foreach (PathfinderNode node in openList)
                 {
