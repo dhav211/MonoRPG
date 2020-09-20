@@ -49,38 +49,8 @@ namespace MonoRPG
             nineSpliceSprite = new NineSpliceSprite(this);
             nineSpliceSprite.Initialize(uiEntityManager.ContentManager.Load<Texture2D>("ui/9splicesprite"), menuDestinationRect);
 
-            consumableButton = new TextButton(this);
-            equipmentButton = new TextButton(this);
-            keyButton = new TextButton(this);
-            battleButton = new TextButton(this);
-            
-            nameLabel = new Label(this);
-            amountLabel = new Label(this);
-            weightLabel = new Label(this);
-            emptyLabel = new Label(this);
-
-            float amountXPosAdjuster = (fieldDestinationRect.Width * .2f) * 3;
-            float weightXPosAdjust = (fieldDestinationRect.Width * .2f) * 4;
-
-            nameLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X, fieldDestinationRect.Y), "Item Name", Color.White);
-            amountLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X + amountXPosAdjuster, fieldDestinationRect.Y), "Amount", Color.White);
-            weightLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X + weightXPosAdjust, fieldDestinationRect.Y), "Weight", Color.White);
-            emptyLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X, fieldDestinationRect.Y + 16), "Text", Color.White);
-
-            consumableButton.Initialize(SpriteFont, "Consumable", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f), menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
-            equipmentButton.Initialize(SpriteFont, "Equipment", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 2, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
-            keyButton.Initialize(SpriteFont, "Key", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 3, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
-            battleButton.Initialize(SpriteFont, "Battle", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 4, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
-
-            Action consumableButtonAction = delegate { OpenSection(SectionOpen.CONSUMABLE); };
-            Action equipmentButtonAction = delegate { OpenSection(SectionOpen.EQUIPMENT); };
-            Action keyButtonAction = delegate { OpenSection(SectionOpen.KEY); };
-            Action battleButtonAction = delegate { OpenSection(SectionOpen.BATTLE); };
-
-            consumableButton.Pressed.Add("inventory_menu", consumableButtonAction);
-            equipmentButton.Pressed.Add("inventory_menu", equipmentButtonAction);
-            keyButton.Pressed.Add("inventory_menu", keyButtonAction);
-            battleButton.Pressed.Add("inventory_menu", battleButtonAction);
+            InitializeHeaderLabels();
+            InitializeTabButtons();
 
             currentSectionOpen = SectionOpen.CONSUMABLE;
             OpenSection(SectionOpen.CONSUMABLE);
@@ -268,6 +238,45 @@ namespace MonoRPG
         {
             GameState.CloseMenu();
             uiEntityManager.RemoveEntity<InventoryMenu>(this);
+        }
+
+        private void InitializeHeaderLabels()
+        {
+            nameLabel = new Label(this);
+            amountLabel = new Label(this);
+            weightLabel = new Label(this);
+            emptyLabel = new Label(this);
+
+            float amountXPosAdjuster = (fieldDestinationRect.Width * .2f) * 3;
+            float weightXPosAdjust = (fieldDestinationRect.Width * .2f) * 4;
+
+            nameLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X, fieldDestinationRect.Y), "Item Name", Color.White);
+            amountLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X + amountXPosAdjuster, fieldDestinationRect.Y), "Amount", Color.White);
+            weightLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X + weightXPosAdjust, fieldDestinationRect.Y), "Weight", Color.White);
+            emptyLabel.Initialize(SpriteFont, new Vector2(fieldDestinationRect.X, fieldDestinationRect.Y + 16), "Text", Color.White);
+        }
+
+        private void InitializeTabButtons()
+        {
+            consumableButton = new TextButton(this);
+            equipmentButton = new TextButton(this);
+            keyButton = new TextButton(this);
+            battleButton = new TextButton(this);
+
+            consumableButton.Initialize(SpriteFont, "Consumable", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f), menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
+            equipmentButton.Initialize(SpriteFont, "Equipment", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 2, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
+            keyButton.Initialize(SpriteFont, "Key", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 3, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
+            battleButton.Initialize(SpriteFont, "Battle", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 4, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
+
+            Action consumableButtonAction = delegate { OpenSection(SectionOpen.CONSUMABLE); };
+            Action equipmentButtonAction = delegate { OpenSection(SectionOpen.EQUIPMENT); };
+            Action keyButtonAction = delegate { OpenSection(SectionOpen.KEY); };
+            Action battleButtonAction = delegate { OpenSection(SectionOpen.BATTLE); };
+
+            consumableButton.Pressed.Add("inventory_menu", consumableButtonAction);
+            equipmentButton.Pressed.Add("inventory_menu", equipmentButtonAction);
+            keyButton.Pressed.Add("inventory_menu", keyButtonAction);
+            battleButton.Pressed.Add("inventory_menu", battleButtonAction);
         }
 
         class ItemField

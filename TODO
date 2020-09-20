@@ -1,14 +1,29 @@
 Tasks:
-    1. Fix crash when player clicks to move to dead enemy.
-    2. In test dungeon scene, create a two chest variables, then use the entity manager to set those chests, this will be a somewhat dumb method right now
-        basically looping thru them and checking the chest_id variable. While this is happening, put the required items within.
-        - This will become the basis for most of the scene creation, since objects are quite limited in ogmo, this will have to make due.
-    3. When player walks up to chest and opens it, remove all items from chest and add to inventory, there will be one big list with all items. and then seperate
-        lists with them sorted.
-    4. Start work on that inventory buddy
+    1. When player clicks on a dead enemy or chest a menu will open allowing player to select items they wish to take
+        - when chest is empty a text box will open saying that it is empty.
+        - when dead enemy is empty, then nothing will happen.
+    
+    2. Create a locked chest which requires a key to unlock.
+        - a message will open saying which key it requires. At bottom of box it will say Close and Unlock. If player has key it will say Unlock if he doesnt
+            it wont.
+    
+    3. Change camera movement. Right now it just freely moves when mouse is near edge of screen. I want a clamp on how far it can move from player. Also
+        it won't be able to move by edge of screen but only when player holds the C key
+    
+    4. Skills. Two basic skills and the rest can be extended from there. Fireball and Molotov
+        - First start with skill bar at the bottom. This will show a picture of skill and cool down number if cooling down.
 
-    Change how the interaction component works. Right now it works off enums. I think I change that into a dictionary<string, delegate>. So the player interaction
-    script can pull from that and avoid a lot of messy if statements in the future. The first interaction will be the main of course
+        -Fireball
+        - This will form a line from where player clicks, it will check if there are any collisions with walls.
+        - The fireball will tween to collision point (usually entity)
+        - once tween is finished it will calculate damage to entity and disappear
+        - proceed to next turn.
+
+        -Molotov
+        -Similar, create line check for entities.
+        - Main difference is it will damage and area. Use flood fill to check for entities and calculate damage.
+
+
     
 
 

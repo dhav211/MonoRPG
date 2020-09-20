@@ -56,7 +56,7 @@ namespace MonoRPG
             }
             
             Position = new Vector2(((_position.X + owner.DestinationRect.X) * Screen.Scale) - alignmentAdjuster, (_position.Y + owner.DestinationRect.Y) * Screen.Scale);
-            clickRect = new Rectangle((int)Position.X / Screen.Scale, (int)Position.Y / Screen.Scale, (int)textWidth.X, (int)textWidth.Y);
+            clickRect = new Rectangle((int)Position.X / Screen.Scale, (int)Position.Y / Screen.Scale, (int)textWidth.X / Screen.Scale, (int)textWidth.Y / Screen.Scale);
         }
 
         public override void Update(float deltaTime)

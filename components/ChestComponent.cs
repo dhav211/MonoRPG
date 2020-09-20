@@ -32,18 +32,16 @@ namespace MonoRPG
         }
 
         public void Open()
-        {
-            // TODO: eventually this will open a menu that will let you choose which items you want to put in inventory. Now just put them all in there.
-            
-            if (ItemsInside.Count == 0)  // have a text box pop up that says the chest is empty
-                return;
-
-            foreach (Item item in ItemsInside)
+        {            
+            if (ItemsInside.Count > 0)
             {
-                inventory.AddItem(item);
+                TakeLootBox takeLootBox = new TakeLootBox(ItemsInside, owner.entityManager.Inventory);
+                EntityCreator.CreateUIEntity<TakeLootBox>(takeLootBox);
             }
-
-            ItemsInside.Clear();
+            else
+            {
+                // create text box that says chest is empty
+            }
         }
 
         public override void Initialize() { }
