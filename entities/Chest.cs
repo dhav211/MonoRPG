@@ -29,8 +29,6 @@ namespace MonoRPG
 
             interactionComponent.MainInteraction = InteractionComponent.InteractionType.OPEN_CHEST;
             interactionComponent.Interactions.Add(InteractionComponent.InteractionType.OPEN_CHEST);
-
-            IsAlive = true;
         }
 
         public override void Update(float deltaTime)

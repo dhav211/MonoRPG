@@ -11750,7 +11750,46 @@
           "originY": 0,
           "values": {"isLocked": false, "keyRequired": "NONE", "chest_id": 0}
         },
-        {"name": "enemy", "id": 3, "_eid": "32164955", "x": 304, "y": 96, "originX": 0, "originY": 0}
+        {
+          "name": "enemy",
+          "id": 3,
+          "_eid": "32164955",
+          "x": 304,
+          "y": 96,
+          "originX": 0,
+          "originY": 0,
+          "values": {"enemy_id": 0}
+        },
+        {
+          "name": "enemy",
+          "id": 4,
+          "_eid": "32164955",
+          "x": 112,
+          "y": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"enemy_id": 0}
+        },
+        {
+          "name": "enemy",
+          "id": 5,
+          "_eid": "32164955",
+          "x": 848,
+          "y": 320,
+          "originX": 0,
+          "originY": 0,
+          "values": {"enemy_id": 3}
+        },
+        {
+          "name": "enemy",
+          "id": 6,
+          "_eid": "32164955",
+          "x": 160,
+          "y": 320,
+          "originX": 0,
+          "originY": 0,
+          "values": {"enemy_id": 2}
+        }
       ]
     }
   ]

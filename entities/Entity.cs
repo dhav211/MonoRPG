@@ -12,6 +12,7 @@ namespace MonoRPG
         public TurnManager TurnManager { get; private set; }
         public string Name { get; set; }
         public bool IsAlive { get; set; } = true;
+        public bool IsWalkable { get; set; } = false;
         public Point Size { get; set; } = new Point(16,16);
         public Rectangle ClickRect { get; set; }
         public bool IsMouseHovered { get; set; }
@@ -93,7 +94,7 @@ namespace MonoRPG
         ///</summary>
         public void SetGridPosition(Transform _transform)
         {
-            Grid.RemoveEntityFromGridNode(_transform.GridPosition.X, _transform.GridPosition.Y);
+            Grid.RemoveEntityFromGridNode(_transform.GridPosition.X, _transform.GridPosition.Y, this);
             _transform.GridPosition = new Point((int)Math.Floor(_transform.Position.X) / 16, (int)Math.Floor(_transform.Position.Y / 16));
             Grid.SetEntityInGridNode(_transform.GridPosition.X, _transform.GridPosition.Y, this);
         }
@@ -103,7 +104,7 @@ namespace MonoRPG
         ///</summary>
         public void SetGridPosition(Transform _transform, Point _gridPositionToSet)
         {
-            Grid.RemoveEntityFromGridNode(_transform.GridPosition.X, _transform.GridPosition.Y);
+            Grid.RemoveEntityFromGridNode(_transform.GridPosition.X, _transform.GridPosition.Y, this);
             _transform.GridPosition = _gridPositionToSet;
             Grid.SetEntityInGridNode(_transform.GridPosition.X, _transform.GridPosition.Y, this);
         }

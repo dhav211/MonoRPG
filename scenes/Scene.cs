@@ -12,8 +12,11 @@ namespace MonoRPG
         {
             entityManager = _entityManager;
             SetChests();
+            SetEnemies();
         }
 
         public virtual void SetChests() {}
+
+        public virtual void SetEnemies() {}
     }
 }

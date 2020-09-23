@@ -11,6 +11,7 @@ namespace MonoRPG
         List<ItemField> itemFields = new List<ItemField>();
         List<LootItem> lootItems = new List<LootItem>();
         List<Item> itemsToLoot;
+        Entity entityLooted = null;
 
         public SpriteFont SpriteFont { get; private set; } 
         NineSpliceSprite nineSpliceSprite;
@@ -20,28 +21,14 @@ namespace MonoRPG
         Rectangle menuDestinationRect = new Rectangle();
         public Rectangle FieldDestinationRect = new Rectangle();
 
-        public TakeLootBox(List<Item> _itemsToLoot, Inventory _inventory)
+        public TakeLootBox(List<Item> _itemsToLoot, Inventory _inventory, Entity _entityLooted)
         {
             inventory = _inventory;
             itemsToLoot = _itemsToLoot;
+            entityLooted = _entityLooted;
 
             GameState.OpenMenu();
         }
-
-        /*
-            The nine splice sprite will be the last thing initialized because it's size and location is based upon how many item fields will be created, and 
-                width of longest item name. Unless Take All length is longer that will be it.
-            As with InventoryMenu itself, create all the item fields by creating a new list of loot items from itemsToLoot list. The big difference here is the 
-                text buttons will not be initially initialized.
-            When each ItemField is created, run a tally of the total height of item fields, this will add the height of each item field when created.
-            Once all item fields are spawned, find the item name with the longest name, this will help determine width of menu.
-            Now we can initialize the NineSpliceSprite. Calculate the height of item field, plus the two buttons. Then width of longest item name plus amount
-                number and space between. Finally center the the menu so it displays in center of screen.
-            Now get the field rect, which will be the size of the ninesplice rect but smaller to factor in buffer on sides.
-            Initialize text buttons in item fields
-            Initalize Close and Take All buttons.
-
-        */
 
         public override void Initialize(UIEntityManager _uiEntityManager)
         {
@@ -114,7 +101,7 @@ namespace MonoRPG
             posY = (Screen.Height / 2) - (spriteHeight / 2);
 
             menuDestinationRect = new Rectangle(posX, posY, spriteWidth, spriteHeight);
-            FieldDestinationRect = new Rectangle(posX + 8, posY + 8, spriteWidth - 16, spriteWidth - 16);
+            FieldDestinationRect = new Rectangle(posX + 8, posY + 8, spriteWidth - 16, spriteHeight - 16);
 
             nineSpliceSprite.Initialize(uiEntityManager.ContentManager.Load<Texture2D>("ui/9splicesprite"), menuDestinationRect);
         }
@@ -125,7 +112,7 @@ namespace MonoRPG
             closeButton = new TextButton(this);
 
             float buttonHeight = itemFields[0].NameWidth.Y / Screen.Scale;
-            float initalButtonSpawnPosY = FieldDestinationRect.Y + FieldDestinationRect.Height - buttonHeight;
+            float initalButtonSpawnPosY = FieldDestinationRect.Y + FieldDestinationRect.Height;
 
             takeAllButton.Initialize(SpriteFont, "Take All", new Vector2(FieldDestinationRect.X, initalButtonSpawnPosY - (buttonHeight * 2)), Color.White, TextButton.TextAlignment.LEFT);
             closeButton.Initialize(SpriteFont, "Close", new Vector2(FieldDestinationRect.X, initalButtonSpawnPosY - buttonHeight), Color.White, TextButton.TextAlignment.LEFT);
@@ -199,6 +186,13 @@ namespace MonoRPG
 
         public void Close()
         {
+            if (itemsToLoot.Count == 0 && entityLooted is Enemy)
+            {
+                InteractionComponent entityInteraction = entityLooted.GetComponent<InteractionComponent>();
+                entityInteraction.MainInteraction = InteractionComponent.InteractionType.NONE;
+                entityInteraction.Interactions.Clear();
+            }
+
             GameState.CloseMenu();
             uiEntityManager.RemoveEntity<TakeLootBox>(this);
         }

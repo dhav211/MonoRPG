@@ -35,5 +35,36 @@ namespace MonoRPG
                 }
             }
         }
+
+        public override void SetEnemies()
+        {
+            List<Enemy> enemies = entityManager.GetEntitiesOfType<Enemy>();
+
+            List<Item> enemy0Items = new List<Item>();
+            enemy0Items.Add(new SmallPotion());
+
+            List<Item> enemy1Items = new List<Item>();
+            enemy1Items.Add(new LargePotion());
+            enemy1Items.Add(new MagicHerb());
+
+            foreach (Enemy enemy in enemies)
+            {
+                EnemyLoot enemyLoot = enemy.GetComponent<EnemyLoot>();
+
+                switch(enemy.EnemyID)
+                {
+                    case 0:
+                        enemyLoot.SetLoot(enemy0Items);
+                        break;
+                    
+                    case 1:
+                        enemyLoot.SetLoot(enemy1Items);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

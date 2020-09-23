@@ -83,7 +83,7 @@ namespace MonoRPG
                         PathToFollow = pathfinder.GetPath(transform.GridPosition, playerTransform.GridPosition);
 
                         // set command to attack player
-                        if (owner.Grid.IsEntityNearby(owner, player)) // if player nearby then attack the asshole
+                        if (owner.Grid.IsEntityInNearbySquare(owner, player)) // if player nearby then attack the asshole
                         {
                             command.Execute();
                         }
@@ -104,7 +104,7 @@ namespace MonoRPG
             }
             else if (CurrentState == State.CHASE && owner.IsEntitiesTurn())
             {
-                if (owner.Grid.IsEntityNearby(owner, player)) // if player nearby then attack the asshole
+                if (owner.Grid.IsEntityInNearbySquare(owner, player)) // if player nearby then attack the asshole
                 {
                     await wait.WaitUntil(.5f);
 

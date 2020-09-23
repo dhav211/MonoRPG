@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace MonoRPG
 {
@@ -31,26 +32,54 @@ namespace MonoRPG
 
         public void SetEntityInGridNode(int _x, int _y, Entity _entity)
         {
-            Grid[_x, _y].OccupyingEntity = _entity;
-            Grid[_x, _y].IsOccupied = true;
+            Grid[_x, _y].OccupyingEntities.Add(_entity);
+
+            if (Grid[_x, _y].OccupyingEntities.Count > 1)
+                Grid[_x, _y].OccupyingEntity = Grid[_x, _y].OccupyingEntities[0];
+            else
+                Grid[_x, _y].OccupyingEntity = _entity;
         }
 
-        public void RemoveEntityFromGridNode(int _x, int _y)
+        public void RemoveEntityFromGridNode(int _x, int _y, Entity _entity)
         {
-            Grid[_x, _y].OccupyingEntity = null;
-            Grid[_x, _y].IsOccupied = false;
+            Grid[_x, _y].OccupyingEntities.Remove(_entity);
+            if (Grid[_x, _y].OccupyingEntities.Count > 0)
+            {
+                Grid[_x, _y].OccupyingEntity = Grid[_x, _y].OccupyingEntities[0];
+            }
+            else
+            {
+                Grid[_x, _y].OccupyingEntity = null;
+            }
         }
 
         public bool IsNodeWalkable(int _x, int _y)
         {
             if (!IsOutOfBounds(_x, _y) && Grid[_x, _y].IsWalkable)
             {
-                if (!Grid[_x, _y].IsOccupied)
+                if (Grid[_x, _y].OccupyingEntity == null)
                     return true;
-                else if (Grid[_x, _y].IsOccupied && !Grid[_x,_y].OccupyingEntity.IsAlive)
+
+                if (Grid[_x, _y].OccupyingEntities.Count > 1)
+                {
+                    foreach (Entity e in Grid[_x, _y].OccupyingEntities)
+                    {
+                        if (!e.IsWalkable)
+                            return false;
+                    }
                     return true;
+                }
                 else
-                    return false;
+                {
+                    if (!Grid[_x, _y].OccupyingEntity.IsWalkable)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
             }
             else
                 return false;
@@ -75,18 +104,17 @@ namespace MonoRPG
             return Grid[_gridPosition.X,_gridPosition.Y].OccupyingEntity;
         }
 
+        public List<Entity> GetEntitiesInGridPosition(Point _gridPosition)
+        {
+            return Grid[_gridPosition.X, _gridPosition.Y].OccupyingEntities;
+        }
+
         public bool IsEntityOcuppyingGridPosition(Point _gridPosition)
         {
-            if (Grid[_gridPosition.X, _gridPosition.Y].OccupyingEntity != null)
-            {
-                if (!Grid[_gridPosition.X, _gridPosition.Y].OccupyingEntity.IsAlive)
-                {
-                    return false;
-                }
-                return true;
-            }
-            else
+            if (Grid[_gridPosition.X, _gridPosition.Y].OccupyingEntity == null)
                 return false;
+            else
+                return true;
         }
 
         public bool IsEntityNearby(Entity _self, Entity _target)
@@ -101,10 +129,35 @@ namespace MonoRPG
                 return false;
         }
 
+        public bool IsEntityInNearbySquare(Entity _self, Entity _target)
+        {
+            Transform selfTransform = _self.GetComponent<Transform>() as Transform;
+
+            Point[] directions = new Point[4];
+            directions[0] = new Point(1,0);
+            directions[1] = new Point(-1,0);
+            directions[2] = new Point(0,1);
+            directions[3] = new Point(0,-1);
+
+            foreach(Point direction in directions)
+            {
+                Point nodeToCheck = selfTransform.GridPosition + direction;
+                foreach(Entity entity in Grid[nodeToCheck.X, nodeToCheck.Y].OccupyingEntities)
+                {
+                    if (entity == _target)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public class GridNode
         {
             public Entity OccupyingEntity { get; set; } = null;
-            public bool IsOccupied { get; set; } = false;
+            public List<Entity> OccupyingEntities { get; private set; } = new List<Entity>();
             public bool IsWalkable { get; set; } = false;
         }
     }

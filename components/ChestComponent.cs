@@ -35,7 +35,7 @@ namespace MonoRPG
         {            
             if (ItemsInside.Count > 0)
             {
-                TakeLootBox takeLootBox = new TakeLootBox(ItemsInside, owner.entityManager.Inventory);
+                TakeLootBox takeLootBox = new TakeLootBox(ItemsInside, owner.entityManager.Inventory, owner);
                 EntityCreator.CreateUIEntity<TakeLootBox>(takeLootBox);
             }
             else

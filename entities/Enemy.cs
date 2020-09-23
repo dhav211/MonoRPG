@@ -17,7 +17,9 @@ namespace MonoRPG
         EnemyController enemyController;
         EnemyAI enemyAI;
         EnemyStatPopupController enemyStatPopupController;
+        EnemyLoot loot;
         public Player Player { get; private set; }
+        public int EnemyID { get; private set; }
 
         public Action _onTurnEnded { get; private set; }
 
@@ -35,6 +37,7 @@ namespace MonoRPG
             enemyController = new EnemyController(this);
             enemyAI = new EnemyAI(this);
             enemyStatPopupController = new EnemyStatPopupController(this);
+            loot = new EnemyLoot(this);
 
             TurnManager.Entities.Add(this);
 
@@ -47,6 +50,7 @@ namespace MonoRPG
 
             Name = "Enemy";
             stats.SetStats(Name, 1, 10, 5, 3, 3, 3, 3);
+            EnemyID = _entityValues.chest_id;
             interactionComponent.MainInteraction = InteractionComponent.InteractionType.ATTACK;
             interactionComponent.Interactions.Add(InteractionComponent.InteractionType.ATTACK);
 
@@ -81,6 +85,7 @@ namespace MonoRPG
         public override void Kill()
         {
             IsAlive = false;
+            IsWalkable = true;
 
             animation.Play("dead");
 

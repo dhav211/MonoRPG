@@ -73,7 +73,7 @@ namespace MonoRPG
 
             while (currentNode != _startNode)
             {
-                if (!grid.IsEntityOcuppyingGridPosition(currentNode.GridPosition))
+                if (grid.IsNodeWalkable(currentNode.GridPosition.X, currentNode.GridPosition.Y))
                     path.Add(currentNode.GridPosition);
                 currentNode = currentNode.ParentNode;
             }

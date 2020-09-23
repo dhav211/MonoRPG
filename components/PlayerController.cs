@@ -79,25 +79,28 @@ namespace MonoRPG
             }
             else if (CurrentState == State.FOLLOW_PATH && owner.IsEntitiesTurn())
             {
-                if (PathToFollow.Count == 0)
+                if (GameState.CanPlayerMove())
                 {
-                    CurrentState = State.STANDING;
-                }
-                else
-                {
-                    if (TargetToFollow == null)
+                    if (PathToFollow.Count == 0)
                     {
-                        SetPathToFollow(PathToFollow[PathToFollow.Count - 1]); // Keep following in same path
+                        CurrentState = State.STANDING;
                     }
-                    else  // Recacluate the path based upon the targets position and not old target
+                    else
                     {
-                        Transform targetTransform = TargetToFollow.GetComponent<Transform>() as Transform;
-                        SetPathToFollow(targetTransform.GridPosition);
-                    }
+                        if (TargetToFollow == null)
+                        {
+                            SetPathToFollow(PathToFollow[PathToFollow.Count - 1]); // Keep following in same path
+                        }
+                        else  // Recacluate the path based upon the targets position and not old target
+                        {
+                            Transform targetTransform = TargetToFollow.GetComponent<Transform>() as Transform;
+                            SetPathToFollow(targetTransform.GridPosition);
+                        }
 
-                    currentMoveDirection = PathToFollow[0] - transform.GridPosition;
-                    PathToFollow.RemoveAt(0);
-                    MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
+                        currentMoveDirection = PathToFollow[0] - transform.GridPosition;
+                        PathToFollow.RemoveAt(0);
+                        MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
+                    }
                 }
             }
         }
@@ -106,15 +109,24 @@ namespace MonoRPG
         {
             if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && owner.Grid.IsNodeWalkable(Input.GetMouseGridPosition().X, Input.GetMouseGridPosition().Y))
             {
+                // Exit from this function if an entity is clicked in the PlayerInteract component.
+                // The player interact should have priority over this command
+                if (owner.Grid.IsEntityOcuppyingGridPosition(Input.GetMouseGridPosition()))
+                    return;
+
                 SetPathToFollow(Input.GetMouseGridPosition());
                 currentMoveDirection = PathToFollow[0] - transform.GridPosition;
                 PathToFollow.RemoveAt(0);
                 MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
 
+                /*
+                This bit is currently handled by PlayerInteract component
+
                 if (owner.Grid.IsEntityOcuppyingGridPosition(Input.GetMouseGridPosition()))
                     TargetToFollow = owner.Grid.GetEntityInGridPosition(Input.GetMouseGridPosition());
                 else
                     TargetToFollow = null; // No entity was clicked so make sure nothing is being tracked
+                    */
             }
         }
 
@@ -271,9 +283,10 @@ namespace MonoRPG
         {
             if (PathToFollow.Count > 0)
             {
-                if (TargetToFollow != null && owner.Grid.IsEntityNearby(owner, TargetToFollow) && playerInteract.command.IsSet)
+                if (TargetToFollow != null && owner.Grid.IsEntityInNearbySquare(owner, TargetToFollow) && playerInteract.command.IsSet)
                 {
                     playerInteract.command.Execute();
+                    PathToFollow.Clear();
                     TargetToFollow = null; // No longer needed to track because command has been executed
                     owner.TurnEnded.Emit(); // TODO: Temporary solution, this signal will emit when the command has fully finished.
                 }

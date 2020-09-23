@@ -801,6 +801,1046 @@
                     "filename": "TODO"
                 }
             ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2020-09-22 19:17:36",
+            "filesum": 152,
+            "codesum": 17960,
+            "commentsum": 321,
+            "blanksum": 928,
+            "statistics": {
+                ".cs": {
+                    "code": 4259,
+                    "comment": 318,
+                    "blank": 830
+                },
+                ".csproj": {
+                    "code": 31,
+                    "comment": 0,
+                    "blank": 0
+                },
+                "": {
+                    "code": 286,
+                    "comment": 3,
+                    "blank": 49
+                },
+                ".manifest": {
+                    "code": 34,
+                    "comment": 0,
+                    "blank": 9
+                },
+                ".targets": {
+                    "code": 10,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".mgcb": {
+                    "code": 70,
+                    "comment": 0,
+                    "blank": 12
+                },
+                ".json": {
+                    "code": 12267,
+                    "comment": 0,
+                    "blank": 13
+                },
+                ".mgcontent": {
+                    "code": 530,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".props": {
+                    "code": 24,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".cache": {
+                    "code": 14,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".ogmo": {
+                    "code": 288,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".CopyComplete": {
+                    "code": 0,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".spritefont": {
+                    "code": 116,
+                    "comment": 0,
+                    "blank": 14
+                },
+                ".txt": {
+                    "code": 31,
+                    "comment": 0,
+                    "blank": 0
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 9,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "app.manifest"
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Content/fonts/m5x7_16.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Content/fonts/test_font.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Content/sprites/red_box.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Content/sprites/temp_chest.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Content/sprites/white_box.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Content/tilesets/temp_tileset.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Content/ui/9splicesprite.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/MonoGame.Framework.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/MonoRPG",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 108,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp3.1/MonoRPG.deps.json"
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/MonoRPG.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/MonoRPG.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp3.1/MonoRPG.runtimeconfig.dev.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp3.1/MonoRPG.runtimeconfig.json"
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/linux-x64/native/libopenal.so.1",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/linux-x64/native/libSDL2-2.0.so.0",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/osx/native/libopenal.1.dylib",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/osx/native/libSDL2-2.0.0.dylib",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/win-x64/native/SDL2.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/win-x64/native/soft_oal.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/win-x86/native/SDL2.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp3.1/runtimes/win-x86/native/soft_oal.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 29,
+                    "code": 130,
+                    "comment": 0,
+                    "filename": "components/Animation.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "components/Attack.cs"
+                },
+                {
+                    "blank": 9,
+                    "code": 41,
+                    "comment": 4,
+                    "filename": "components/ChestComponent.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 16,
+                    "comment": 3,
+                    "filename": "components/Component.cs"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "components/EnemyAI.cs"
+                },
+                {
+                    "blank": 23,
+                    "code": 129,
+                    "comment": 12,
+                    "filename": "components/EnemyController.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "components/EnemyLoot.cs"
+                },
+                {
+                    "blank": 12,
+                    "code": 59,
+                    "comment": 4,
+                    "filename": "components/EnemyStatPopupContoller.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "components/InteractionComponent.cs"
+                },
+                {
+                    "blank": 40,
+                    "code": 255,
+                    "comment": 41,
+                    "filename": "components/PlayerController.cs"
+                },
+                {
+                    "blank": 17,
+                    "code": 102,
+                    "comment": 9,
+                    "filename": "components/PlayerInteract.cs"
+                },
+                {
+                    "blank": 9,
+                    "code": 46,
+                    "comment": 2,
+                    "filename": "components/SpriteRenderer.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 65,
+                    "comment": 0,
+                    "filename": "components/Stats.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 28,
+                    "comment": 2,
+                    "filename": "components/TakeDamage.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 25,
+                    "filename": "components/Transform.cs"
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/Content/fonts/m5x7_16.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/Content/fonts/test_font.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/Content/sprites/red_box.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/Content/sprites/temp_chest.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/Content/sprites/white_box.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/Content/tilesets/temp_tileset.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/Content/ui/9splicesprite.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/fonts/m5x7_16.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/fonts/test_font.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/sprites/red_box.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/sprites/temp_chest.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/sprites/white_box.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/tilesets/temp_tileset.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/bin/DesktopGL/ui/9splicesprite.xnb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 12,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "Content/Content.mgcb"
+                },
+                {
+                    "blank": 7,
+                    "code": 63,
+                    "comment": 0,
+                    "filename": "Content/fonts/File.spritefont"
+                },
+                {
+                    "blank": 7,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "Content/fonts/test_font.spritefont"
+                },
+                {
+                    "blank": 0,
+                    "code": 115,
+                    "comment": 0,
+                    "filename": "Content/fonts/to_the_bottom.ogmo"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/.mgstats"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/.mgstats"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/fonts/m5x7_16.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/fonts/test_font.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/sprites/red_box.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/sprites/temp_chest.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/sprites/white_box.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/tilesets/temp_tileset.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/Content/ui/9splicesprite.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/fonts/File.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/fonts/m5x7_16.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/fonts/test_font.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/sprites/red_box.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/sprites/temp_chest.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/sprites/white_box.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/tilesets/temp_tileset.mgcontent"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Content/obj/DesktopGL/ui/9splicesprite.mgcontent"
+                },
+                {
+                    "filename": "Content/sprites/red_box.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/sprites/temp_chest.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/sprites/white_box.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/tilesets/temp_tileset.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Content/ui/9splicesprite.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 8,
+                    "code": 36,
+                    "comment": 1,
+                    "filename": "entities/Chest.cs"
+                },
+                {
+                    "blank": 17,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": "entities/Enemy.cs"
+                },
+                {
+                    "blank": 25,
+                    "code": 111,
+                    "comment": 18,
+                    "filename": "entities/Entity.cs"
+                },
+                {
+                    "blank": 23,
+                    "code": 110,
+                    "comment": 17,
+                    "filename": "entities/EntityManager.cs"
+                },
+                {
+                    "blank": 15,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "entities/Player.cs"
+                },
+                {
+                    "blank": 37,
+                    "code": 133,
+                    "comment": 10,
+                    "filename": "Game1.cs"
+                },
+                {
+                    "filename": "Icon.bmp",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Icon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "items/BattleItem.cs"
+                },
+                {
+                    "blank": 10,
+                    "code": 65,
+                    "comment": 0,
+                    "filename": "items/ConsumableItem.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "items/Equipment.cs"
+                },
+                {
+                    "blank": 5,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "items/Inventory.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "items/Item.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "items/KeyItem.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 173,
+                    "comment": 0,
+                    "filename": "levels/monorpg.ogmo"
+                },
+                {
+                    "blank": 0,
+                    "code": 11796,
+                    "comment": 0,
+                    "filename": "levels/test_dungeon.json"
+                },
+                {
+                    "blank": 47,
+                    "code": 219,
+                    "comment": 3,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "MonoRPG.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 10,
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.AssemblyInfo.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.AssemblyInfoInputs.cache"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.assets.cache",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.csproj.CopyComplete"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.csproj.CoreCompileInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.csproj.FileListAbsolute.txt"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.csprojAssemblyReference.cache",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.genruntimeconfig.cache"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp3.1/MonoRPG.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 68,
+                    "comment": 0,
+                    "filename": "obj/MonoRPG.csproj.nuget.dgspec.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "obj/MonoRPG.csproj.nuget.g.props"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/MonoRPG.csproj.nuget.g.targets"
+                },
+                {
+                    "blank": 8,
+                    "code": 276,
+                    "comment": 0,
+                    "filename": "obj/project.assets.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "obj/project.nuget.cache"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "Program.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "scenes/Scene.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "scenes/SceneManager.cs"
+                },
+                {
+                    "blank": 12,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "scenes/TestDungeonL1.cs"
+                },
+                {
+                    "blank": 54,
+                    "code": 237,
+                    "comment": 4,
+                    "filename": "systems/camera/Camera.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "systems/commands/Command.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "systems/debug_console/DebugConsole.cs"
+                },
+                {
+                    "blank": 5,
+                    "code": 22,
+                    "comment": 4,
+                    "filename": "systems/entity_creator/EntityCreator.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "systems/globals/GameState.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "systems/globals/Screen.cs"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "systems/globals/Time.cs"
+                },
+                {
+                    "blank": 21,
+                    "code": 143,
+                    "comment": 0,
+                    "filename": "systems/grid/Grid.cs"
+                },
+                {
+                    "blank": 17,
+                    "code": 74,
+                    "comment": 1,
+                    "filename": "systems/input/Input.cs"
+                },
+                {
+                    "blank": 18,
+                    "code": 61,
+                    "comment": 2,
+                    "filename": "systems/line_of_sight/LineOfSight.cs"
+                },
+                {
+                    "blank": 30,
+                    "code": 126,
+                    "comment": 1,
+                    "filename": "systems/pathfinding/Pathfinder.cs"
+                },
+                {
+                    "blank": 17,
+                    "code": 75,
+                    "comment": 13,
+                    "filename": "systems/signals/Signal.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 44,
+                    "comment": 1,
+                    "filename": "systems/tilemap/Level.cs"
+                },
+                {
+                    "blank": 23,
+                    "code": 116,
+                    "comment": 20,
+                    "filename": "systems/tilemap/LevelLoader.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 39,
+                    "comment": 7,
+                    "filename": "systems/tilemap/TilemapEntityLoader.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 50,
+                    "comment": 3,
+                    "filename": "systems/tilemap/TilemapRenderer.cs"
+                },
+                {
+                    "blank": 11,
+                    "code": 39,
+                    "comment": 6,
+                    "filename": "systems/turn_manager/TurnManager.cs"
+                },
+                {
+                    "blank": 30,
+                    "code": 140,
+                    "comment": 19,
+                    "filename": "systems/tween/Tween.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 27,
+                    "comment": 7,
+                    "filename": "systems/wait/Wait.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "TODO"
+                },
+                {
+                    "blank": 12,
+                    "code": 70,
+                    "comment": 6,
+                    "filename": "ui/components/Label.cs"
+                },
+                {
+                    "blank": 31,
+                    "code": 146,
+                    "comment": 14,
+                    "filename": "ui/components/NineSpliceSprite.cs"
+                },
+                {
+                    "blank": 19,
+                    "code": 79,
+                    "comment": 7,
+                    "filename": "ui/components/TextButton.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "ui/components/UIComponent.cs"
+                },
+                {
+                    "blank": 10,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "ui/entities/DamageText.cs"
+                },
+                {
+                    "blank": 14,
+                    "code": 52,
+                    "comment": 4,
+                    "filename": "ui/entities/EnemyStatPopup.cs"
+                },
+                {
+                    "blank": 62,
+                    "code": 320,
+                    "comment": 32,
+                    "filename": "ui/entities/menus/InventoryMenu.cs"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 1,
+                    "filename": "ui/entities/menus/MenuManager.cs"
+                },
+                {
+                    "blank": 52,
+                    "code": 233,
+                    "comment": 0,
+                    "filename": "ui/entities/TakeLootBox.cs"
+                },
+                {
+                    "blank": 12,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "ui/entities/TextBox.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 28,
+                    "comment": 1,
+                    "filename": "ui/entities/UIEntity.cs"
+                },
+                {
+                    "blank": 7,
+                    "code": 77,
+                    "comment": 6,
+                    "filename": "ui/entities/UIEntityManager.cs"
+                }
+            ]
         }
     ]
 }

@@ -80,14 +80,14 @@ namespace MonoRPG
         ///<summary>
         /// Returns all of the entities in list of given type as a List<Entity>
         ///</summary>
-        public List<Entity> GetEntitiesOfType<T>()
+        public List<T> GetEntitiesOfType<T>() where T : Entity
         {
-            List<Entity> entitiesToReturn = new List<Entity>();
+            List<T> entitiesToReturn = new List<T>();
 
             foreach (Entity entity in entities)
             {
                 if (entity is T)
-                    entitiesToReturn.Add(entity);
+                    entitiesToReturn.Add(entity as T);
             }
 
             return entitiesToReturn;
