@@ -1,5 +1,5 @@
 Tasks:
-    1. When player clicks on a dead enemy or chest a menu will open allowing player to select items they wish to take
+    X1. When player clicks on a dead enemy or chest a menu will open allowing player to select items they wish to take
         - when chest is empty a text box will open saying that it is empty.
         - when dead enemy is empty, then nothing will happen.
     
@@ -22,6 +22,9 @@ Tasks:
         -Molotov
         -Similar, create line check for entities.
         - Main difference is it will damage and area. Use flood fill to check for entities and calculate damage.
+    
+    5. Create keyboard movement for menus.
+        - Hightlighted text buttons will turn yellow instead of it's usual white
 
 
     

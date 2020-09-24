@@ -26,6 +26,9 @@ namespace MonoRPG
             nineSpliceSprite = new NineSpliceSprite(this);
             label = new Label(this);
             button = new TextButton(this);
+
+            if (!IsScrollable)
+                GameState.OpenMenu();
         }
 
         public override void Update(float deltaTime)
@@ -42,6 +45,20 @@ namespace MonoRPG
         {
             label.Draw(deltaTime);
             button.Draw(deltaTime);
+        }
+
+        public void CreateGenericTextBox(string _text)
+        {
+            Texture2D texture = uiEntityManager.ContentManager.Load<Texture2D>("ui/9splicesprite");
+            SpriteFont spriteFont = uiEntityManager.ContentManager.Load<SpriteFont>("fonts/m5x7_16");
+            Rectangle labelDestinationRect = new Rectangle(8, 8, DestinationRect.Width - 16, DestinationRect.Height - 16);
+            Vector2 textSize = spriteFont.MeasureString(_text);
+            Vector2 textButtonPosition = new Vector2(labelDestinationRect.X + (labelDestinationRect.Width / 2), labelDestinationRect.Y + (labelDestinationRect.Height - (textSize.Y / Screen.Scale)));
+
+
+            CreateNineSpliceSprite(texture, new Rectangle());
+            CreateLabel(spriteFont, labelDestinationRect, _text, Color.White);
+            CreateButton(spriteFont, "Close", textButtonPosition, Color.White);
         }
 
         public void CreateNineSpliceSprite(Texture2D _texture, Rectangle _destination)
@@ -62,6 +79,14 @@ namespace MonoRPG
 
         public void onButtonPressed()
         {
+            Close();
+        }
+
+        public void Close()
+        {
+            if (!IsScrollable)
+                GameState.CloseMenu();
+            
             uiEntityManager.RemoveEntity<TextBox>(this);
         }
     }

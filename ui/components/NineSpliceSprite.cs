@@ -35,8 +35,16 @@ namespace MonoRPG
             SpliceWidth = texture.Width / 3;
             SpliceHeight = texture.Height / 3;
 
-            HorizontalWidth = _destination.Width - (SpliceWidth * 2);
-            VerticalHeight = _destination.Height - (SpliceHeight * 2);
+            if (_destination != new Rectangle())
+            {
+                HorizontalWidth = _destination.Width - (SpliceWidth * 2);
+                VerticalHeight = _destination.Height - (SpliceHeight * 2);
+            }
+            else
+            {
+                HorizontalWidth = owner.DestinationRect.Width - (SpliceWidth * 2);
+                VerticalHeight = owner.DestinationRect.Height - (SpliceHeight * 2);
+            }
 
             SetSections();
         }

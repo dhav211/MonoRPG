@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace MonoRPG
 {
@@ -40,7 +41,11 @@ namespace MonoRPG
             }
             else
             {
-                // create text box that says chest is empty
+                Point textBoxSize = new Point(Screen.Width / 4, Screen.Height / 4);
+                Rectangle textBoxDestination = new Rectangle((Screen.Width / 2) - (textBoxSize.X / 2), (Screen.Height / 2) - (textBoxSize.Y / 2), textBoxSize.X, textBoxSize.Y);
+                TextBox textBox = new TextBox(textBoxDestination, false);
+                EntityCreator.CreateUIEntity<TextBox>(textBox);
+                textBox.CreateGenericTextBox("It's not a bottomless chest, and if it was you couldn't ever get the items from it!");
             }
         }
 
