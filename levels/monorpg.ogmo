@@ -120,7 +120,7 @@
         {
           "name": "keyRequired",
           "definition": "Enum",
-          "choices": ["NONE", "SILVER_KEY", "SKELETON_KEY"],
+          "choices": ["NONE", "SILVER_KEY", "SKELETON_KEY", "SIMPLE_KEY"],
           "defaults": 0
         },
         {"name": "chest_id", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100}

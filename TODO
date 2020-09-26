@@ -3,7 +3,7 @@ Tasks:
         - when chest is empty a text box will open saying that it is empty.
         - when dead enemy is empty, then nothing will happen.
     
-    2. Create a locked chest which requires a key to unlock.
+    X2. Create a locked chest which requires a key to unlock.
         - a message will open saying which key it requires. At bottom of box it will say Close and Unlock. If player has key it will say Unlock if he doesnt
             it wont.
     

@@ -11,10 +11,21 @@ namespace MonoRPG
         SpriteFont spriteFont;
         public Rectangle DestinationRect { get; private set; }
         public Vector2 Position { get; private set; }
-        public string Text { get; set; }
+        private string text;
+        public string Text
+        {
+            get { return text; }
+            set
+            {
+                text = value;
+
+                if (isWordWrapEnabled)
+                    text = WrapText();
+            }
+        }
         Color color;
 
-        //bool isWordWrapEnabled = false;
+        bool isWordWrapEnabled = false;
 
         public Label(UIEntity _owner) : base(_owner)
         {
@@ -32,6 +43,7 @@ namespace MonoRPG
             spriteFont = _spriteFont;
             Text = _text;
             color = _color;
+            isWordWrapEnabled = _wordWrap;
             
             if (_wordWrap)
                 Text = WrapText();
@@ -61,7 +73,7 @@ namespace MonoRPG
             string wrappedText = "";
             string[] words = Text.Split(' ');
             Vector2 spaceWidth = spriteFont.MeasureString(" ");
-            float lineWidth = DestinationRect.Width;  // TODO no magic numbers get a buffer zone for text box
+            float lineWidth = DestinationRect.Width;
             float currentLineWidth = 0;
 
             for (int i = 0; i < words.Length; ++i)

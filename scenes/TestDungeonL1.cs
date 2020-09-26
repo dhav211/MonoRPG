@@ -22,6 +22,9 @@ namespace MonoRPG
             chest1Items.Add(new SmallPotion());
             chest1Items.Add(new SmallPotion());
             chest1Items.Add(new MagicHerb());
+            chest1Items.Add(new SimpleKey());
+
+            chest2Items.Add(new LargePotion());
 
             foreach (ChestComponent chest in chestComponents)
             {
@@ -30,6 +33,12 @@ namespace MonoRPG
                     case 0:
                     {
                         chest.SetItemsInside(chest1Items);
+                        break;
+                    }
+
+                    case 1:
+                    {
+                        chest.SetItemsInside(chest2Items);
                         break;
                     }
                 }

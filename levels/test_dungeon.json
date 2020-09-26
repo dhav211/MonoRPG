@@ -11738,7 +11738,7 @@
           "y": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"isLocked": true, "keyRequired": "SILVER_KEY", "chest_id": 1}
+          "values": {"isLocked": true, "keyRequired": "SIMPLE_KEY", "chest_id": 1}
         },
         {
           "name": "chest",
