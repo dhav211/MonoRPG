@@ -23,9 +23,6 @@ namespace MonoRPG
         private Inventory inventory;
         private MenuManager menuManager;
 
-        TextBox textBox;
-        TextBox textBox2;
-
         // TODO this won't be consts as time goes on since the menu will allow resoultion change.
         // Detect user resolution and set screen width as that, then set vitrual screen width based on that
         // Example, at 1080P the virtual resolution is scaled down by 4, whereas in 720P it would be scaled at 3

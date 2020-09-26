@@ -40,13 +40,10 @@ namespace MonoRPG
                                             _destinationRect.Width * Screen.Scale, 
                                             _destinationRect.Height * Screen.Scale);
             Position = new Vector2(DestinationRect.X, DestinationRect.Y);
+            isWordWrapEnabled = _wordWrap;
             spriteFont = _spriteFont;
             Text = _text;
             color = _color;
-            isWordWrapEnabled = _wordWrap;
-            
-            if (_wordWrap)
-                Text = WrapText();
         }
 
         public void Initialize(SpriteFont _spriteFont, Vector2 _position, string _text, Color _color)
