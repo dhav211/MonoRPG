@@ -58,6 +58,8 @@ namespace MonoRPG
 
         public override void Update(float deltaTime)
         {
+            base.Update(deltaTime);
+
             consumableButton.Update(deltaTime);
             equipmentButton.Update(deltaTime);
             keyButton.Update(deltaTime);
@@ -229,6 +231,65 @@ namespace MonoRPG
                     }
                 }
             }
+
+            SetFocusNeighborsForItems();
+        }
+
+        private void SetFocusNeighborsForItems()
+        {
+            if (currentItemFields.Count == 0)
+                return;
+            
+            for (int i = 0; i < currentItemFields.Count; ++i)
+            {
+                if (i == 0)  // For the first item
+                {
+                    // The first item in the list, when pressed up will return to the tab which the item belongs in.
+                    // example: a potion, up will lead you to the consumables button
+                    switch(currentItemFields[i].ItemType)
+                    {
+                        case Item.ItemType.CONSUMABLE:
+                        {
+                            currentItemFields[i].ItemButton.FocusNeighborUp = consumableButton;
+                            break;
+                        }
+                        case Item.ItemType.EQUIPMENT:
+                        {
+                            currentItemFields[i].ItemButton.FocusNeighborUp = equipmentButton;
+                            break;
+                        }
+                        case Item.ItemType.BATTLE:
+                        {
+                            currentItemFields[i].ItemButton.FocusNeighborUp = battleButton;
+                            break;
+                        }
+                        case Item.ItemType.KEY:
+                        {
+                            currentItemFields[i].ItemButton.FocusNeighborUp = keyButton;
+                            break;
+                        }
+                    }
+                    
+                    if (currentItemFields.Count > 1) // Go to the next button if there is more than one item
+                        currentItemFields[i].ItemButton.FocusNeighborDown = currentItemFields[i + 1].ItemButton;
+                }
+                else if (i == currentItemFields.Count - 1)  // For the last item
+                {
+                    currentItemFields[i].ItemButton.FocusNeighborUp = currentItemFields[i - 1].ItemButton;
+                    currentItemFields[i].ItemButton.FocusNeighborDown = currentItemFields[0].ItemButton;
+                }
+                else   // for all the items in between
+                {
+                    currentItemFields[i].ItemButton.FocusNeighborUp = currentItemFields[i - 1].ItemButton;
+                    currentItemFields[i].ItemButton.FocusNeighborDown = currentItemFields[i + 1].ItemButton;
+                }
+            }
+
+            // Set all the tab buttons to the first item field in the list
+            consumableButton.FocusNeighborDown = currentItemFields[0].ItemButton;
+            equipmentButton.FocusNeighborDown = currentItemFields[0].ItemButton;
+            keyButton.FocusNeighborDown = currentItemFields[0].ItemButton;
+            battleButton.FocusNeighborDown = currentItemFields[0].ItemButton;
         }
 
         ///<summary>
@@ -268,6 +329,7 @@ namespace MonoRPG
             keyButton.Initialize(SpriteFont, "Key", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 3, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
             battleButton.Initialize(SpriteFont, "Battle", new Vector2(menuDestinationRect.X + (menuDestinationRect.Width * .2f) * 4, menuDestinationRect.Y + 8), Color.White, TextButton.TextAlignment.LEFT);
 
+            // The the signals for pressing the buttons
             Action consumableButtonAction = delegate { OpenSection(SectionOpen.CONSUMABLE); };
             Action equipmentButtonAction = delegate { OpenSection(SectionOpen.EQUIPMENT); };
             Action keyButtonAction = delegate { OpenSection(SectionOpen.KEY); };
@@ -277,6 +339,15 @@ namespace MonoRPG
             equipmentButton.Pressed.Add("inventory_menu", equipmentButtonAction);
             keyButton.Pressed.Add("inventory_menu", keyButtonAction);
             battleButton.Pressed.Add("inventory_menu", battleButtonAction);
+
+            // Set the left and right focus neighors for Tab buttons. Down focus neighbors will be set in Set Item Fields function
+            consumableButton.SetFocusNeighbors(null, null, battleButton, equipmentButton);
+            equipmentButton.SetFocusNeighbors(null, null, consumableButton, keyButton);
+            keyButton.SetFocusNeighbors(null, null, equipmentButton, battleButton);
+            battleButton.SetFocusNeighbors(null, null, keyButton, consumableButton);
+
+            CurrentFocused = consumableButton;
+            CurrentFocused.onFocusEntered();
         }
 
         class ItemField
@@ -289,10 +360,11 @@ namespace MonoRPG
             public float Weight { get; set; }
             public Vector2 Position { get; set; }
             public List<Item> ItemsContained { get; set; } = new List<Item>();
+            public Item.ItemType ItemType { get; private set; }
+            int itemIndex;
             Item CurrentItem;
             Action _onPressed;
             Action<Entity> _onUseConsumable;
-            Item.ItemType ItemType;
             InventoryMenu inventoryMenu;
 
             Signal Use = new Signal();
@@ -307,6 +379,7 @@ namespace MonoRPG
 
                 ItemType = _item.Item_Type;
                 CurrentItem = _item;
+                itemIndex = _itemOrderNumber;
 
                 // Set the onPressed signal in the Text Button for the item
                 _onPressed = OnPressed;
@@ -387,6 +460,20 @@ namespace MonoRPG
                     {
                         inventoryMenu.ClearSection();
                         inventoryMenu.OpenSection(SectionOpen.CONSUMABLE);
+
+                        if (inventoryMenu.currentItemFields.Count > 0) // there are still items left
+                        {
+                            if (itemIndex < inventoryMenu.currentItemFields.Count) // not the last item, so simply focus the next item
+                                inventoryMenu.CurrentFocused = inventoryMenu.currentItemFields[itemIndex].ItemButton;
+                            else // the last item, so focus the previous item
+                                inventoryMenu.CurrentFocused = inventoryMenu.currentItemFields[itemIndex - 1].ItemButton;
+                        }
+                        else // there are no items left, focus the consumable tab
+                        {
+                            inventoryMenu.CurrentFocused = inventoryMenu.consumableButton;
+                        }
+
+                        inventoryMenu.CurrentFocused.onFocusEntered();
                     }
                 }
             }

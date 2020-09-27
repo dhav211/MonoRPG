@@ -8,7 +8,7 @@ namespace MonoRPG
     public class TakeLootBox : UIEntity
     {
         public Inventory inventory;
-        List<ItemField> itemFields = new List<ItemField>();
+        public List<ItemField> itemFields { get; private set; } = new List<ItemField>();
         List<LootItem> lootItems = new List<LootItem>();
         List<Item> itemsToLoot;
         Entity entityLooted = null;
@@ -35,17 +35,21 @@ namespace MonoRPG
             base.Initialize(_uiEntityManager);
 
             SpriteFont = uiEntityManager.ContentManager.Load<SpriteFont>("fonts/m5x7_16");
+
             FillItemFields();
-
             SetNineSpliceSprite();
-
             InitializeItemFields();
-
             InitializeTakeAllAndCloseButtons();
+            SetFocusNeighbors();
+
+            CurrentFocused = itemFields[0].ItemButton;
+            CurrentFocused.onFocusEntered();
         }
 
         public override void Update(float deltaTime)
         {
+            base.Update(deltaTime);
+
             for (int i = 0; i < itemFields.Count; ++i)
             {
                 if (i >= itemFields.Count)
@@ -178,6 +182,42 @@ namespace MonoRPG
             }
         }
 
+        public void SetFocusNeighbors()
+        {
+            for (int i = 0; i < itemFields.Count; ++i)
+            {
+                if (i == 0)
+                {
+                    itemFields[i].ItemButton.FocusNeighborUp = closeButton;
+                    
+                    if (itemFields.Count > 1)
+                    {
+                        itemFields[i].ItemButton.FocusNeighborDown = itemFields[i + 1].ItemButton;
+                    }
+                    else
+                    {
+                        itemFields[i].ItemButton.FocusNeighborDown = takeAllButton;
+                    }
+                }
+                else if (i == itemFields.Count - 1)
+                {
+                    itemFields[i].ItemButton.FocusNeighborUp = itemFields[i - 1].ItemButton;
+                    itemFields[i].ItemButton.FocusNeighborDown = takeAllButton;
+                }
+                else
+                {
+                    itemFields[i].ItemButton.FocusNeighborUp = itemFields[i - 1].ItemButton;
+                    itemFields[i].ItemButton.FocusNeighborDown = itemFields[i + 1].ItemButton;
+                }
+            }
+
+            takeAllButton.FocusNeighborUp = itemFields[itemFields.Count - 1].ItemButton;
+            takeAllButton.FocusNeighborDown = closeButton;
+
+            closeButton.FocusNeighborUp = takeAllButton;
+            closeButton.FocusNeighborDown = itemFields[0].ItemButton;
+        }
+
         public void ClearItemFields()
         {
             lootItems.Clear();
@@ -197,7 +237,7 @@ namespace MonoRPG
             uiEntityManager.RemoveEntity<TakeLootBox>(this);
         }
 
-        class ItemField
+        public class ItemField
         {
             public TextButton ItemButton { get; private set; }
             public Label AmountLabel { get; private set; }
@@ -257,7 +297,7 @@ namespace MonoRPG
                 {
                     currentItem = ItemsContained[0];
                 }
-                else
+                else // an item is depleted, so reform the list
                 {
                     owner.ClearItemFields();
                     owner.FillItemFields();
@@ -266,6 +306,17 @@ namespace MonoRPG
                     if (owner.itemsToLoot.Count == 0)
                     {
                         owner.Close();
+                    }
+                    else // this is seperated to prevent crash when all items are cleared
+                    {
+                        owner.SetFocusNeighbors();
+
+                        if (ItemFieldIndex < owner.itemFields.Count) // not the last item, so simply focus the next item
+                            owner.CurrentFocused = owner.itemFields[ItemFieldIndex].ItemButton;
+                        else // the last item, so focus the previous item
+                            owner.CurrentFocused = owner.itemFields[ItemFieldIndex - 1].ItemButton;
+                        
+                        owner.CurrentFocused.onFocusEntered();
                     }
                 }
             }

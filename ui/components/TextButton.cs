@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace MonoRPG
@@ -19,19 +20,15 @@ namespace MonoRPG
         public string Text { get; private set; }
         Color color;
 
-        bool isHovered = false;
-
-        public Signal Pressed { get; private set; }
-        public Signal MouseEntered { get; private set; }
-        public Signal MouseExited { get; private set; }
+        bool isHovered;
 
         public TextButton(UIEntity _owner) : base(_owner)
         {
             spriteBatch = owner.SpriteBatch;
 
             Pressed = new Signal();
-            MouseEntered = new Signal();
-            MouseExited = new Signal();
+            FocusEntered = new Signal();
+            FocusExited = new Signal();
         }
 
         public void Initialize(SpriteFont _spriteFont, string _text, Vector2 _position, Color _color, TextAlignment _alignment = TextAlignment.CENTER)
@@ -61,6 +58,20 @@ namespace MonoRPG
 
         public override void Update(float deltaTime)
         {
+            HandleMouseInput();
+            //HandleKeyboardInput();
+        }
+
+        public override void Draw(float deltaTime)
+        {
+            if (!IsVisible)
+                return;
+
+            spriteBatch.DrawString(spriteFont, Text, Position, color);
+        }
+
+        private void HandleMouseInput()
+        {
             Vector2 mousePosition = new Vector2();
 
             // If camera effects position of parent then it would effect where the mouse click positions ends up at
@@ -73,32 +84,78 @@ namespace MonoRPG
             if ((mousePosition.X > clickRect.X) && (mousePosition.X < clickRect.X + clickRect.Width) &&
                 (mousePosition.Y > clickRect.Y) && (mousePosition.Y < clickRect.Y + clickRect.Height))
             {
-                isHovered = true;
-                // emit mouse entered signal if useful
+                if (!isHovered)
+                {
+                    onFocusEntered();
+                    isHovered = true;
+                }
             }
             else
             {
-                if (isHovered) // if the mouse was over the button as it left the click rect
+                if (isHovered)
                 {
-                    // emit mouse exited signal if useful
+                    isHovered = false;
+                    //onFocusExited();
                 }
-
-                isHovered = false;
             }
 
             // Once button is hovered and mouse button is pressed then emit its pressed signal
-            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && isHovered)
+            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && IsFocused)
             {
                 Pressed.Emit();
             }
         }
 
-        public override void Draw(float deltaTime)
+        private void HandleKeyboardInput()
         {
-            if (!IsVisible)
+            if (!IsFocused)
                 return;
+            
+            if (FocusNeighborUp != null && Input.IsKeyJustPressed(Keys.W))
+            {
+                onFocusExited();
+                FocusNeighborUp.onFocusEntered();
+            }
+            else if (FocusNeighborDown != null && Input.IsKeyJustPressed(Keys.S))
+            {
+                onFocusExited();
+                FocusNeighborDown.onFocusEntered();
+            }
+            else if (FocusNeighborLeft != null && Input.IsKeyJustPressed(Keys.A))
+            {
+                onFocusExited();
+                FocusNeighborLeft.onFocusEntered();
+            }
+            else if (FocusNeighborRight != null && Input.IsKeyJustPressed(Keys.D))
+            {
+                onFocusExited();
+                FocusNeighborRight.onFocusEntered();
+            }
 
-            spriteBatch.DrawString(spriteFont, Text, Position, color);
+            if (Input.IsKeyJustPressed(Keys.Enter))
+            {
+                Pressed.Emit();
+            }
+        }
+
+        public override void onFocusEntered()
+        {
+            if (owner.CurrentFocused != null)
+                owner.CurrentFocused.onFocusExited();
+
+            IsFocused = true;
+            color = Color.Yellow;
+            owner.CurrentFocused = this;
+        }
+
+        public override void onFocusExited()
+        {
+            if (IsFocused) // if the mouse was over the button as it left the click rect
+            {
+                // emit mouse exited signal if useful
+                color = Color.White;
+                IsFocused = false;
+            }
         }
     }
 }

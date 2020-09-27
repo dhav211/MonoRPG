@@ -37,7 +37,8 @@ namespace MonoRPG
             if (!owner.IsAlive)
                 return;
             
-            if (enemyStatPopup == null)
+            // Menu can only pop up if one doesn't exist and the game state allows it
+            if (enemyStatPopup == null && GameState.CanPlayerMove())
             {
                 enemyStatPopup = new EnemyStatPopup(transform.Position, stats);
                 EntityCreator.CreateUIEntity<EnemyStatPopup>(enemyStatPopup);

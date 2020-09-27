@@ -62,6 +62,7 @@ namespace MonoRPG
             SetNineSpliceSprite();
             SetText();
             SetButtons();
+            SetFocusNeighbors();
         }
 
         public override void Draw(float deltaTime)
@@ -80,6 +81,8 @@ namespace MonoRPG
 
         public override void Update(float deltaTime)
         {
+            base.Update(deltaTime);
+
             closeButton.Update(deltaTime);
 
             if (hasKey)
@@ -127,6 +130,22 @@ namespace MonoRPG
                 Action unlockAction = Unlock;
                 unlockButton.Pressed.Add("unlock_dialog_box", unlockAction);
             }
+        }
+
+        private void SetFocusNeighbors()
+        {
+            if (hasKey)
+            {
+                closeButton.SetFocusNeighbors(unlockButton, unlockButton, null, null);
+                unlockButton.SetFocusNeighbors(closeButton, closeButton, null, null);
+                CurrentFocused = unlockButton;
+            }
+            else
+            {
+                CurrentFocused = closeButton;
+            }
+
+            CurrentFocused.onFocusEntered();
         }
 
         public void Close()
