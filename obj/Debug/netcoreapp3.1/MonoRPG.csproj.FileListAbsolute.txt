@@ -29,3 +29,7 @@
 /home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/fonts/test_font.xnb
 /home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/fonts/m5x7_16.xnb
 /home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/9splicesprite.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/fireball_icon.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/fire_spread_icon.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/skill_ui_box.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/skill_cooldown_cover.xnb

@@ -94,7 +94,6 @@ namespace MonoRPG
             float progress = SetProcessByEaseType(currentDuration);
 
             progress = Math.Clamp(progress, 0, 1);
-            
 
             if (progress < 1)
             {
@@ -104,6 +103,7 @@ namespace MonoRPG
             }
             else
             {
+                OnComplete.Emit();
                 Stop();
             }
 
@@ -115,17 +115,13 @@ namespace MonoRPG
         ///</summary>
         public Vector2 TweenVector2(Vector2 _currentAmount, float deltaTime)
         {
-
             float progress = SetProcessByEaseType(currentDuration);
-
             progress = Math.Clamp(progress, 0, 1);
-            
 
             if (progress < 1)
             {
                 currentDuration += deltaTime;
-                Vector2 tweenAmount = toVector2 - _currentAmount;
-                return _currentAmount + progress * tweenAmount;
+                return Vector2.Lerp(fromVector2, toVector2, progress);
             }
             else
             {

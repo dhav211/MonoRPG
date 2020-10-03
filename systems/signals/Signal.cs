@@ -50,6 +50,11 @@ namespace MonoRPG
             }
         }
 
+        public void RemoveAllListeners()
+        {
+            listeners.Clear();
+        }
+
         public async Task Wait()
         {
             while(!awaiter.IsEmitted)
@@ -90,9 +95,7 @@ namespace MonoRPG
 
             public async void NotifyAwaiter()
             {
-                if (Awaiters == 0)
-                    return;
-                
+               
                 IsEmitted = true;
 
                 await Task.Delay(3);

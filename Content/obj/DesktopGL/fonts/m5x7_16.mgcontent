@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>/home/daniel/GameDev/MonoRPG/Content/fonts/test_font.spritefont</SourceFile>
-  <SourceTime>2020-09-13T12:49:27.4099332-07:00</SourceTime>
+  <SourceTime>2020-09-14T12:26:50.311619-07:00</SourceTime>
   <DestFile>/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/fonts/m5x7_16.xnb</DestFile>
-  <DestTime>2020-09-13T12:49:31.7859133-07:00</DestTime>
+  <DestTime>2020-09-27T12:29:58.9067359-07:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-07:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

@@ -5,3 +5,7 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "/home/daniel/GameDev/MonoRPG/Content/sprites/white_box.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/sprites/white_box.xnb","TextureProcessor","Texture2DContent",175,6229,0.001009
 "/home/daniel/GameDev/MonoRPG/Content/tilesets/temp_tileset.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/tilesets/temp_tileset.xnb","TextureProcessor","Texture2DContent",510,6229,0.0007866
 "/home/daniel/GameDev/MonoRPG/Content/ui/9splicesprite.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/ui/9splicesprite.xnb","TextureProcessor","Texture2DContent",309,9301,0.000899
+"/home/daniel/GameDev/MonoRPG/Content/ui/fire_spread_icon.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/ui/fire_spread_icon.xnb","TextureProcessor","Texture2DContent",235,1109,0.1406172
+"/home/daniel/GameDev/MonoRPG/Content/ui/fireball_icon.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/ui/fireball_icon.xnb","TextureProcessor","Texture2DContent",200,1109,0.0008605
+"/home/daniel/GameDev/MonoRPG/Content/ui/skill_cooldown_cover.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/ui/skill_cooldown_cover.xnb","TextureProcessor","Texture2DContent",99,1109,0.1243664
+"/home/daniel/GameDev/MonoRPG/Content/ui/skill_ui_box.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/Content/ui/skill_ui_box.xnb","TextureProcessor","Texture2DContent",244,2389,0.0005727

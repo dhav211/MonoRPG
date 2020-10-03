@@ -15,7 +15,9 @@ namespace MonoRPG
         Camera camera;
         Pathfinder pathfinder;
 
-        public enum State { STANDING, MOVING, FOLLOW_PATH, INTERACTING, WAITING_FOR_TURN }
+        float speed = 100;
+
+        public enum State { STANDING, MOVING, FOLLOW_PATH, INTERACTING, WAITING_FOR_TURN, USING_SKILL }
         public State CurrentState { get; set; } = State.STANDING;
 
         Point currentMoveDirection = new Point();
@@ -109,6 +111,9 @@ namespace MonoRPG
         {
             if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && owner.Grid.IsNodeWalkable(Input.GetMouseGridPosition().X, Input.GetMouseGridPosition().Y))
             {
+                if (!Input.IsMouseInClickRange())
+                    return;
+
                 // Exit from this function if an entity is clicked in the PlayerInteract component.
                 // The player interact should have priority over this command
                 if (owner.Grid.IsEntityOcuppyingGridPosition(Input.GetMouseGridPosition()))
@@ -225,7 +230,7 @@ namespace MonoRPG
             owner.SetGridPosition(transform, transform.GridPosition + new Point((int)_direction.X, (int)_direction.Y));
 
             _direction *= 16;
-            tween.SetTween(transform.Position, transform.Position + _direction, .25f, Tween.EaseType.LINEAR);
+            tween.SetTween(transform.Position, transform.Position + _direction, 16 / speed, Tween.EaseType.LINEAR);
             tween.Start();
             CurrentState = State.MOVING;
         }

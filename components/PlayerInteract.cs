@@ -21,8 +21,11 @@ namespace MonoRPG
 
         public override void Update(float deltaTime)
         {
-            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && GameState.CanPlayerMove())
+            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && GameState.CanPlayerMove() && playerController.CurrentState == PlayerController.State.STANDING)
             {
+                if (!Input.IsMouseInClickRange())
+                    return;
+                    
                 // TODO: refactor this so it is not only used here but in the player controller script
                 Entity entityClicked = null;
                 Point gridPositionClicked = Input.GetMouseGridPosition();

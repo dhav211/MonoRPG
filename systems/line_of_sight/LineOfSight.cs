@@ -50,6 +50,20 @@ namespace MonoRPG
             return true;
         }
 
+        public Point GetCollisionPoint(Point _destination)
+        {
+            Transform casterTransform = caster.GetComponent<Transform>() as Transform;
+            List<Point> lineCoords = PlotLine(casterTransform.GridPosition.X, casterTransform.GridPosition.Y, _destination.X, _destination.Y);
+            
+            foreach (Point coord in lineCoords)
+            {
+                if (!grid.IsNodeWalkable(coord.X, coord.Y))
+                    return coord;
+            }
+
+            return new Point(); // nothing to return
+        }
+
         private List<Point> PlotLine(int x0, int y0, int x1, int y1)
         {
             List<Point> lineCoords = new List<Point>();

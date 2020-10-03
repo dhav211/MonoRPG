@@ -135,7 +135,7 @@ namespace MonoRPG
         ///</summary>
         public void RemoveEntity(Entity _entity)
         {
-
+            entities.Remove(_entity);
         }
 
         ///<summary>

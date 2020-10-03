@@ -45,6 +45,13 @@ namespace MonoRPG
                 nonscrollableEntities.Remove(_uiEntity);
         }
 
+        public void RemoveAllEntities()
+        {
+            Entities.Clear();
+            scrollableEntities.Clear();
+            nonscrollableEntities.Clear();
+        }
+
         public void Update(float deltaTime) 
         {
             for (int i = 0; i < Entities.Count; ++i)

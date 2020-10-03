@@ -15,6 +15,7 @@ namespace MonoRPG
         Stats stats;
         TakeDamage takeDamage;
         Attack attack;
+        SkillsComponent skills;
         public Camera Camera { get; set; }
 
         public Action _onTurnEnded;
@@ -32,6 +33,7 @@ namespace MonoRPG
             stats = new Stats(this);
             takeDamage = new TakeDamage(this);
             attack = new Attack(this);
+            skills = new SkillsComponent(this);
 
             TurnManager.Entities.Add(this);
 

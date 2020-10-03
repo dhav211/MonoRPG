@@ -35,12 +35,12 @@ namespace MonoRPG
             return currentKeyState.IsKeyDown(_key) && !oldKeyState.IsKeyDown(_key);
         }
 
-        public static  bool IsKeyReleased(Keys _key)
+        public static bool IsKeyReleased(Keys _key)
         {
             return currentKeyState.IsKeyUp(_key) && !oldKeyState.IsKeyUp(_key);
         }
 
-        public static  bool IsMouseButtonPressed(MouseButton _mouseButton)
+        public static bool IsMouseButtonPressed(MouseButton _mouseButton)
         {
             if (_mouseButton == MouseButton.LEFT)
             {
@@ -54,7 +54,7 @@ namespace MonoRPG
             return false;
         }
 
-        public static  bool IsMouseButtonJustPressed(MouseButton _mouseButton)
+        public static bool IsMouseButtonJustPressed(MouseButton _mouseButton)
         { // TODO: odd behavior here. If this function is called twice in a row it cancels the Right button out.
 
             if (_mouseButton == MouseButton.LEFT)
@@ -69,23 +69,33 @@ namespace MonoRPG
             return false;
         }
 
-        public static  Vector2 GetMousePosition()
+        public static Vector2 GetMousePosition()
         {
             MouseState currentMouseState = Mouse.GetState();
 
             return new Vector2(currentMouseState.X / Screen.Scale, currentMouseState.Y / Screen.Scale);
         }
 
-        public static  Vector2 GetMouseWorldPosition()
+        public static Vector2 GetMouseWorldPosition()
         {
             return Screen.Camera.ScreenToWorld(GetMousePosition());
         }
 
-        public static  Point GetMouseGridPosition()
+        public static Point GetMouseGridPosition()
         {
             Vector2 mouseWorldPosition = GetMouseWorldPosition();
 
             return new Point((int)Math.Floor(mouseWorldPosition.X / 16), (int)Math.Floor(mouseWorldPosition.Y / 16));
+        }
+
+        public static bool IsMouseInClickRange()
+        {
+            Vector2 mousePos = GetMousePosition();
+
+            if (mousePos.Y < Screen.Height - 24)
+                return true;
+
+            return false;
         }
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>/home/daniel/GameDev/MonoRPG/Content/ui/9splicesprite.png</SourceFile>
-  <SourceTime>2020-09-12T10:41:18.2423619-07:00</SourceTime>
+  <SourceTime>2020-09-14T12:26:50.311619-07:00</SourceTime>
   <DestFile>/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/9splicesprite.xnb</DestFile>
-  <DestTime>2020-09-13T12:49:31.8099132-07:00</DestTime>
+  <DestTime>2020-09-27T12:29:58.9387358-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

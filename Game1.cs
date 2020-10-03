@@ -70,7 +70,7 @@ namespace MonoRPG
             EntityCreator.Initialize(entityManager, uIEntityManager);
             tilemapRenderer = new TilemapRenderer(_spriteBatch);
             levelLoader = new LevelLoader(tilemapRenderer, new TilemapEntityLoader(entityManager), grid, entityManager);
-            SceneManager.SetSceneManager(levelLoader, Content, entityManager, tilemapRenderer);
+            SceneManager.SetSceneManager(levelLoader, Content, entityManager, uIEntityManager, tilemapRenderer);
 
             SceneManager.LoadScene("TestDungeonL1");
         }
