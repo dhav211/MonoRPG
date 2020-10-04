@@ -246,7 +246,7 @@ namespace MonoRPG
             // Check if player is off screen. If player is off screen then tween the camera to position of player
             if (camera.IsEntityOutOfBounds(owner))
             {
-                camera.ScrollToPosition(new Vector2(transform.Position.X - (Screen.Width / 2), transform.Position.Y - (Screen.Height / 2)));
+                camera.ScrollToPosition(new Vector2(transform.Position.X - (Screen.Width / 2), transform.Position.Y - (Screen.Height / 2)), 150f);
             }
 
             float scrollDistance = 192;
@@ -273,7 +273,7 @@ namespace MonoRPG
 
             if (scrollDirection.X > 0 || scrollDirection.X < 0 || scrollDirection.Y > 0 || scrollDirection.Y < 0)
             {
-                camera.Scroll(scrollDirection, scrollDistance, 1.5f);
+                camera.Scroll(scrollDirection, scrollDistance, .5f);
             }
         }
         

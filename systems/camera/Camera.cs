@@ -9,6 +9,8 @@ namespace MonoRPG
         public enum State { FREE, SCROLLING, LOCKED }
         public State CurrentState { get; set; } = State.FREE;
 
+        private CameraController controller;
+
         private Matrix transformationMatrix = Matrix.Identity;
         private Matrix inverseMatrix = Matrix.Identity;
         private Matrix textTransformationMatrix = Matrix.Identity;
@@ -18,8 +20,6 @@ namespace MonoRPG
         private Vector2 zoom = Vector2.One;
         private Vector2 origin = Vector2.Zero;
         private bool hasChanged;
-
-        private const float MOVE_SPEED = 100f;
 
         public Viewport Viewport { get; set; }
 
@@ -136,6 +136,7 @@ namespace MonoRPG
         public Camera(Viewport _viewport)
         {
             Viewport = _viewport;
+            controller = new CameraController(this);
             Screen.SetCamera(this);
             _onFinishedScrolling = onFinishedScrolling;
             tween.OnComplete.Add("camera", _onFinishedScrolling);
@@ -144,6 +145,7 @@ namespace MonoRPG
         public Camera(int _width, int _height)
         {
             Viewport = new Viewport(0, 0, _width, _height);
+            controller = new CameraController(this);
             Screen.SetCamera(this);
             _onFinishedScrolling = onFinishedScrolling;
             tween.OnComplete.Add("camera", _onFinishedScrolling);
@@ -157,7 +159,7 @@ namespace MonoRPG
             }
             else if (CurrentState == State.FREE)
             {
-                MoveCamera(deltaTime);
+                controller.Update(deltaTime);
             }
         }
 
@@ -230,29 +232,6 @@ namespace MonoRPG
             return Vector2.Transform(_position, TransformationMatrix);
         }
 
-        private void MoveCamera(float deltaTime)
-        {
-            Vector2 mousePosition = Input.GetMousePosition();
-
-            if (mousePosition.X > Screen.Width * .95)
-            {
-                X += MOVE_SPEED * deltaTime;
-            }
-            else if (mousePosition.X < Screen.Width * .05)
-            {
-                X -= MOVE_SPEED * deltaTime;
-            }
-
-            if (mousePosition.Y > Screen.Height * .95)
-            {
-                Y += MOVE_SPEED * deltaTime;
-            }
-            else if (mousePosition.Y < Screen.Height * .05)
-            {
-                Y -= MOVE_SPEED * deltaTime;
-            }
-        }
-
         ///<summary>
         /// Check to see if the given entity is within the camera range
         ///</summary>
@@ -278,11 +257,11 @@ namespace MonoRPG
             CurrentState = State.SCROLLING;
         }
 
-        public void ScrollToPosition(Vector2 _position)
+        public void ScrollToPosition(Vector2 _position, float _speed)
         {
             float distance = Vector2.Distance(Position, _position);
 
-            tween.SetTween(Position, _position, distance * .01f, Tween.EaseType.EASE_OUT);
+            tween.SetTween(Position, _position, distance / _speed, Tween.EaseType.EASE_OUT);
             tween.Start();
             CurrentState = State.SCROLLING;
         }

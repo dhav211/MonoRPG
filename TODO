@@ -7,7 +7,7 @@ Tasks:
         - a message will open saying which key it requires. At bottom of box it will say Close and Unlock. If player has key it will say Unlock if he doesnt
             it wont.
     
-    3. Change camera movement. Right now it just freely moves when mouse is near edge of screen. I want a clamp on how far it can move from player. Also
+    X3. Change camera movement. Right now it just freely moves when mouse is near edge of screen. I want a clamp on how far it can move from player. Also
         it won't be able to move by edge of screen but only when player holds the C key
     
     4. Skills. Two basic skills and the rest can be extended from there. Fireball and Molotov
@@ -33,18 +33,6 @@ Tasks:
             It will also be needed when player health bars are created
     
     7. Show health bars at bottom of screen, above skill slots.
-
-
-    Cooldown.
-    - Once skill is used, in the skill class set it's current cool down to it's cooldown period.
-    - Make the cooldown cover and cooldown period label invisible.
-    - Connect the skills with the players on turn started signal.
-    - When that signal is emitted, the let the countdown drop for the skills.
-    - There will be a signal in the skills called CooldownFinished, which will emit and inform the skill button that it can be used again.
-    - There will be another signal in the skills called SkillUsed, which will emit and inform the skill button that it can't be used.
-    - When the SkillUsed is emitted, make the cooldown cover and cool down label invisible.
-    - When CooldownFinished is emitted, make the cooldown cover and label visible again.
-    - These signals will also control a bool in the SkilButton called isCoolingdown, which allows button to be pressed.
 
 
     -Debug Console-

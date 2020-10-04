@@ -114,10 +114,10 @@ namespace MonoRPG
                 cooldownCoverTexture = _skillBar.uiEntityManager.ContentManager.Load<Texture2D>("ui/skill_cooldown_cover");
 
                 cooldownPeriod = new Label(SkillBar);
-                cooldownPeriod.Initialize(SkillBar.SpriteFont, new Vector2(Destination.X  + 5, Destination.Y + 5), "", Color.White);
+                cooldownPeriod.Initialize(SkillBar.SpriteFont, new Rectangle(Destination.X + 10, Destination.Y + 8, 16, 16), "", Color.White, false);
 
                 cooldownCover = new UITexture(SkillBar);
-                cooldownCover.Initialize(cooldownCoverTexture, new Vector2(Destination.X  + 5, Destination.Y + 5));
+                cooldownCover.Initialize(cooldownCoverTexture, new Vector2(Destination.X  + 4, Destination.Y + 4));
             }
 
             public void SetSkillButton(Skill _skill)
@@ -126,7 +126,7 @@ namespace MonoRPG
 
                 if (!isButtonInitialized)
                 {
-                    Button.Initialize(SetSkill.Icon, new Vector2(Destination.X + 5, Destination.Y + 5));
+                    Button.Initialize(SetSkill.Icon, new Vector2(Destination.X + 4, Destination.Y + 4));
                     isButtonInitialized = true;
                 }
                 else
@@ -171,8 +171,11 @@ namespace MonoRPG
 
             public void onSkillUsed()
             {
-                isCoolingDown = true;
-                cooldownPeriod.Text = SetSkill.CurrentCooldown.ToString();
+                if (SetSkill.CurrentCooldown > 0)
+                {
+                    isCoolingDown = true;
+                    cooldownPeriod.Text = SetSkill.CurrentCooldown.ToString();
+                }
             }
 
             public void onCooldownFinished()
