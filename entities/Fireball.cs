@@ -8,6 +8,7 @@ namespace MonoRPG
         ProjectileComponent projectileComponent;
         Transform transform;
         SpriteRenderer sprite;
+        AnimationController animation;
 
         public override void Initialize(EntityManager _entityManager, Vector2 _position = default, Level.LevelEntityValues _entityValues = null)
         {
@@ -15,12 +16,19 @@ namespace MonoRPG
 
             projectileComponent = new ProjectileComponent(this);
             transform = new Transform(this);
-            sprite = new SpriteRenderer(this, entityManager.SpriteBatch, entityManager.ContentManager.Load<Texture2D>("ui/fireball_icon"), new Point(16,16));
+            sprite = new SpriteRenderer(this, entityManager.SpriteBatch, entityManager.ContentManager.Load<Texture2D>("sprites/fireball"), new Point(16,16));
+            animation = new AnimationController(this);
 
             foreach (Component component in Components)
                 component.Initialize();
             
             transform.Position = _position;
+
+            animation.Add("moving", new int[] {0,1,2}, 4);
+            animation.Add("explode", new int[] {3,4,5}, 4, false);
+
+            System.Action _onExplodeAnimationComplete = onExplodeAnimationComplete;
+            animation.animations["explode"].OnComplete.Add("fireball", _onExplodeAnimationComplete);
         }
 
         public override void Update(float deltaTime)
@@ -35,8 +43,11 @@ namespace MonoRPG
 
         public override void Kill()
         {
-            // Play explosion animation here when you got one
-            // this could also be an async deal, so when animation is done, then kill
+            animation.Play("explode");
+        }
+
+        public void onExplodeAnimationComplete()
+        {
             entityManager.RemoveEntity(this);
         }
     }

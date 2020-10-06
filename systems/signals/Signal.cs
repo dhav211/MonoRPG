@@ -98,7 +98,7 @@ namespace MonoRPG
                
                 IsEmitted = true;
 
-                await Task.Delay(3);
+                await Task.Delay(10);
 
                 IsEmitted = false;
                 Awaiters = 0;

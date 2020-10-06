@@ -13,9 +13,13 @@ namespace MonoRPG
 
             // TODO remove all this once an equip skill function is established
             FireballSkill fireballSkill = new FireballSkill(_owner);
+            MolotovSkill molotovSkill = new MolotovSkill(_owner);
 
             Skills.Add(fireballSkill);
             HotkeySkills[0] = fireballSkill;
+
+            Skills.Add(molotovSkill);
+            HotkeySkills[1] = molotovSkill;
         }
 
         public override void Update(float deltaTime)

@@ -7,44 +7,30 @@ namespace MonoRPG
 {
     public class FireballSkill : Skill
     {
-        public string Name { get; set; } = "Fireball";
-        public Texture2D Icon { get; set; }
-        public int Cost { get; set; } = 5;
-        public int CooldownPeriod { get; set; } = 3;
-        public int CurrentCooldown { get; set; }
-        public SkillState SkillState { get; set; } = SkillState.NOT_IN_USE;
-        public Signal OnComplete { get; set; }
-        public Signal OnUsed { get; set; }
-        public Signal OnCoolDownFinished { get; set; }
-        public Entity Owner { get; set; }
-        LineOfSight lineOfSight;
-        bool wasJustUsed= false;
-        
-        
-        public FireballSkill(Entity _entity)
+        public FireballSkill(Entity _entity) : base(_entity)
         {
-            Owner = _entity;
-            Icon = _entity.entityManager.ContentManager.Load<Texture2D>("ui/fireball_icon");
-            lineOfSight = new LineOfSight(Owner, Owner.Grid);
+            Name = "Fireball";
+            Cost = 5;
+            CooldownPeriod = 3;
+            State = SkillState.NOT_IN_USE;
 
+            Icon = _entity.entityManager.ContentManager.Load<Texture2D>("ui/fireball_icon");
+            
             OnUsed = new Signal();
             OnCoolDownFinished = new Signal();
-
-            Action _onTurnStarted = onTurnStarted;
-            Owner.TurnStarted.Add("fireball_skill", _onTurnStarted);
         }
 
-        public void Update(float deltaTime)
+        public override void Update(float deltaTime)
         {
-            if (SkillState == SkillState.SELECT_TARGET)
+            if (State == SkillState.SELECT_TARGET)
             {
                 SelectTarget();
             }
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            SkillState = SkillState.SELECT_TARGET;
+            State = SkillState.SELECT_TARGET;
 
             if (Owner is Player)
             {
@@ -54,9 +40,9 @@ namespace MonoRPG
             }
         }
 
-        public void Initiate()
+        public override void Initiate()
         {
-            SkillState = SkillState.SELECT_TARGET;
+            State = SkillState.SELECT_TARGET;
         }
 
         private void SelectTarget()
@@ -104,7 +90,7 @@ namespace MonoRPG
                 CurrentCooldown = CooldownPeriod;
                 wasJustUsed = true;
                 OnUsed.Emit();
-                SkillState = SkillState.EXECUTING;
+                State = SkillState.EXECUTING;
             }
         }
 
@@ -120,43 +106,8 @@ namespace MonoRPG
                 ownerAttack.DealMagicalDamage(Owner.GetComponent<Stats>(), _target.GetComponent<Stats>(), _target.GetComponent<TakeDamage>());
             }
 
-            SkillState = SkillState.NOT_IN_USE;
+            State = SkillState.NOT_IN_USE;
             Owner.TurnEnded.Emit();
-        }
-
-        private Entity GetEntityClicked(Point _mouseGridPosition)
-        {
-            if (Owner.Grid.IsEntityOcuppyingGridPosition(_mouseGridPosition))
-            {
-                List<Entity> entitiesInPosition = Owner.Grid.GetEntitiesInGridPosition(_mouseGridPosition);
-
-                foreach (Entity entity in entitiesInPosition)
-                {
-                    if (entity.IsAlive && entity.HasComponent<TakeDamage>())
-                    {
-                        return entity;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public void onTurnStarted()
-        {
-            if (wasJustUsed)
-            {
-                wasJustUsed = false;
-                return;
-            }
-            
-            if (CurrentCooldown > 0)
-            {
-                CurrentCooldown--;
-
-                if (CurrentCooldown == 0)
-                    OnCoolDownFinished.Emit();
-            }
         }
     }
 }

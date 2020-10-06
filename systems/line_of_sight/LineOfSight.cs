@@ -64,6 +64,25 @@ namespace MonoRPG
             return new Point(); // nothing to return
         }
 
+        public Point GetPointBeforeCollision(Point _destination)
+        {
+            Transform casterTransform = caster.GetComponent<Transform>() as Transform;
+            List<Point> lineCoords = PlotLine(casterTransform.GridPosition.X, casterTransform.GridPosition.Y, _destination.X, _destination.Y);
+            
+            for (int i = 0; i < lineCoords.Count; ++i)
+            {
+                if (!grid.IsNodeWalkable(lineCoords[i].X, lineCoords[i].Y))
+                {
+                    if (i > 0)
+                        return lineCoords[i - 1];
+                    else
+                        return lineCoords[i];
+                }
+            }
+
+            return new Point(); // nothing to return
+        }
+
         private List<Point> PlotLine(int x0, int y0, int x1, int y1)
         {
             List<Point> lineCoords = new List<Point>();
@@ -85,7 +104,8 @@ namespace MonoRPG
             }
 
             lineCoords.RemoveAt(0); // Remove first entry since it would just be the entity casting
-            lineCoords.RemoveAt(lineCoords.Count - 1); // Remove the last entry sicne it's just the target
+            // if (lineCoords.Count > 0)
+            //     lineCoords.RemoveAt(lineCoords.Count - 1); // Remove the last entry sicne it's just the target
 
             return lineCoords;
         }

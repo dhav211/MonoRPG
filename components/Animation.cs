@@ -11,7 +11,7 @@ namespace MonoRPG
         enum State { PLAYING, PAUSED }
         State currentState = State.PLAYING;
 
-        Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
+        public Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
         Animation currentAnimation;
         List<Point> frames = new List<Point>();
 
@@ -22,8 +22,6 @@ namespace MonoRPG
 
         float animationSpeed = 0;
         float currentFrameTime = 0;
-
-
 
         public AnimationController(Entity _owner) : base(_owner)
         {
@@ -46,6 +44,15 @@ namespace MonoRPG
             {
                 if (currentFrameTime >= animationSpeed)
                 {
+                    if (currentAnimation.CurrentFrameIndex == currentAnimation.TotalFrames)
+                    {
+                        currentAnimation.OnComplete.Emit();
+                        if (!currentAnimation.IsRepeating)
+                        {
+                            // stop the animation
+                        }
+                    }
+
                     currentFrame = currentAnimation.GetNextFrame();
                     spriteRenderer.SetTextureFrame(frames[currentFrame].X, frames[currentFrame].Y);
                     currentFrameTime = 0;
@@ -119,16 +126,20 @@ namespace MonoRPG
         {
             public string Name { get; private set; }
             public int[] Frames { get; private set; }
+            public int TotalFrames { get; private set; }
             public bool IsRepeating { get; private set; }
             public float Speed { get; private set; }
             public int CurrentFrameIndex { get; set; }
+            public Signal OnComplete { get; set; }
 
             public Animation(string _name, int[] _frames, bool _isRepeating, float _speed, int _maxFrames)
             {
                 Name = _name;
                 Frames = _frames;
+                TotalFrames = Frames.Length - 1;
                 IsRepeating = _isRepeating;
                 Speed = 1 / _speed;
+                OnComplete = new Signal();
                 SetIncorrectFrames(_maxFrames);
             }
 

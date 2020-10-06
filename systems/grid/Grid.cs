@@ -21,6 +21,7 @@ namespace MonoRPG
                 for (int x = 0; x < _width; ++x)
                 {
                     Grid[x, y] = new GridNode();
+                    Grid[x, y].Position = new Point(x, y);
                 }
             }
         }
@@ -159,6 +160,7 @@ namespace MonoRPG
             public Entity OccupyingEntity { get; set; } = null;
             public List<Entity> OccupyingEntities { get; private set; } = new List<Entity>();
             public bool IsWalkable { get; set; } = false;
+            public Point Position { get; set; } = new Point();
         }
     }
 }

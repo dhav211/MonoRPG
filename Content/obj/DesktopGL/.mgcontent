@@ -5,6 +5,8 @@
   <Config />
   <SourceFiles>
     <File>/home/daniel/GameDev/MonoRPG/Content/fonts/test_font.spritefont</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/sprites/damage_square.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/sprites/fireball.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/sprites/red_box.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/sprites/temp_chest.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/sprites/white_box.png</File>
@@ -17,6 +19,8 @@
   </SourceFiles>
   <DestFiles>
     <File>fonts/m5x7_16.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

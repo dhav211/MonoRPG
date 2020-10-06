@@ -20,6 +20,30 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/test_font.spritefont;fonts/m5x7_16.spritefont
 
+#begin sprites/damage_square.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/damage_square.png
+
+#begin sprites/fireball.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/fireball.png
+
 #begin sprites/red_box.png
 /importer:TextureImporter
 /processor:TextureProcessor
