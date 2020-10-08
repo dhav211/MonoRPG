@@ -21,6 +21,9 @@ namespace MonoRPG
         public State CurrentState { get; set; } = State.STANDING;
 
         Point currentMoveDirection = new Point();
+        Point previousGridPosition = new Point();
+        Point[] previousGridPositions = new Point[2] { new Point(), new Point() };
+
         public List<Point> PathToFollow { get; private set; } = new List<Point>();
         public Entity TargetToFollow { get; set; } = null;
 
@@ -99,9 +102,24 @@ namespace MonoRPG
                             SetPathToFollow(targetTransform.GridPosition);
                         }
 
-                        currentMoveDirection = PathToFollow[0] - transform.GridPosition;
-                        PathToFollow.RemoveAt(0);
-                        MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
+                        if (PathToFollow.Count > 0)
+                        {
+                            // There exists a chance an enemy can block the players path, so they will keep moving out of each others way creating an infinite
+                            // loop. This checks to see if the path isn't the same as it was two moves ago. if it was, then it means it's stuck in the same path
+                            if (PathToFollow[0] == previousGridPositions[1])
+                            {
+                                CurrentState = State.STANDING;
+                                return;
+                            }
+                            
+                            currentMoveDirection = PathToFollow[0] - transform.GridPosition;
+                            PathToFollow.RemoveAt(0);
+                            MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
+                        }
+                        else  // If by chance the recalculated path returns nothing, then just get back into standing state
+                        {
+                            CurrentState = State.STANDING;
+                        }
                     }
                 }
             }
@@ -123,15 +141,6 @@ namespace MonoRPG
                 currentMoveDirection = PathToFollow[0] - transform.GridPosition;
                 PathToFollow.RemoveAt(0);
                 MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
-
-                /*
-                This bit is currently handled by PlayerInteract component
-
-                if (owner.Grid.IsEntityOcuppyingGridPosition(Input.GetMouseGridPosition()))
-                    TargetToFollow = owner.Grid.GetEntityInGridPosition(Input.GetMouseGridPosition());
-                else
-                    TargetToFollow = null; // No entity was clicked so make sure nothing is being tracked
-                    */
             }
         }
 
@@ -228,6 +237,10 @@ namespace MonoRPG
         private void MoveInDirection(Vector2 _direction)
         {
             owner.SetGridPosition(transform, transform.GridPosition + new Point((int)_direction.X, (int)_direction.Y));
+            
+            // This helps prevent the player getting stuck in infinite pathfinding loops by keeping track of previous spaces
+            previousGridPositions[1] = previousGridPositions[0];
+            previousGridPositions[0] = transform.GridPosition;
 
             _direction *= 16;
             tween.SetTween(transform.Position, transform.Position + _direction, 16 / speed, Tween.EaseType.LINEAR);

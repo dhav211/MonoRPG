@@ -22,6 +22,7 @@ namespace MonoRPG
         public Signal MouseEntered { get; private set; } = new Signal();
         public Signal MouseExited { get; private set; } = new Signal();
         public Signal MousePressed { get; private set; } = new Signal();
+        public Signal Destroy { get; private set; } = new Signal();
 
 
         public virtual void Update(float deltaTime) 
@@ -140,8 +141,6 @@ namespace MonoRPG
         }
 
         public virtual void Kill() { }
-
-        public virtual void Destroy() { }
 
         public bool IsEntitiesTurn()
         {

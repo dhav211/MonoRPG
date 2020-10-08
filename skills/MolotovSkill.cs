@@ -11,6 +11,7 @@ namespace MonoRPG
         Point currentGridPosition = new Point();
 
         List<IndicationArea> indicationAreas = new List<IndicationArea>();
+        List<Point> attackPositions = new List<Point>();
 
         public MolotovSkill(Entity _entity) : base(_entity)
         {
@@ -60,8 +61,6 @@ namespace MonoRPG
             {
                 currentGridPosition = mousePosition;
                 // if there are indication areas already, remove them from the game
-                // do a flood fill
-                // create red area indicators where flood fill positions are given
 
                 if (indicationAreas.Count > 0)
                 {
@@ -80,15 +79,74 @@ namespace MonoRPG
 
                 floodFill.Start(currentGridPosition, 3);
 
-                List<Point> floodFillPoints = floodFill.GetAllWalkablePositions();
+                // The flood fill will pick up walls what not, this makes sure that only the walkable areas are gathered
+                attackPositions = floodFill.GetAllWalkablePositions();
 
-                foreach(Point point in floodFillPoints)
+                // create red area indicators where flood fill positions are given
+                foreach(Point point in attackPositions)
                 {
                     IndicationArea area = new IndicationArea();
                     EntityCreator.CreateEntity<IndicationArea>(area, new Vector2(point.X * 16, point.Y * 16));
                     indicationAreas.Add(area);
                 }
             }
+
+            if (Input.IsMouseButtonJustPressed(Input.MouseButton.LEFT) && attackPositions.Count > 0)
+            {
+                Molotov molotovToWait = null;
+                List<Entity> entitiesToDamage = new List<Entity>();
+                
+                foreach(Point position in attackPositions)
+                {
+                    Molotov molotov = new Molotov();
+                    EntityCreator.CreateEntity<Molotov>(molotov, new Vector2(position.X * 16, position.Y * 16));
+
+                    // Check to see if there are any entities in the molotovs attack range
+                    if (Owner.Grid.IsEntityOcuppyingGridPosition(position))
+                    {
+                        List<Entity> entities = Owner.Grid.GetEntitiesInGridPosition(position);
+
+                        // if any of the entities can be damaged, then add them to the list
+                        foreach (Entity entity in entities)
+                        {
+                            if (entity.HasComponent<TakeDamage>())
+                            {
+                                entitiesToDamage.Add(entity);
+                            }
+                        }
+                    }
+
+                    // only one molotov instance needs to be sent to be waited on for the DamageTarget method
+                    if (molotovToWait == null)
+                        molotovToWait = molotov;
+                }
+
+                foreach (IndicationArea area in indicationAreas)
+                    area.Kill();
+
+                indicationAreas.Clear();
+
+                DamageTarget(molotovToWait, entitiesToDamage);
+                CurrentCooldown = CooldownPeriod;
+                wasJustUsed = true;
+                OnUsed.Emit();
+                State = SkillState.EXECUTING;
+            }
+        }
+
+        private async void DamageTarget(Molotov _molotov, List<Entity> _entitiesToDamage)
+        {
+            await _molotov.Destroy.Wait();
+
+            Attack ownerAttack = Owner.GetComponent<Attack>();
+
+            for(int i = 0; i < _entitiesToDamage.Count; ++i)
+            {
+                ownerAttack.DealMagicalDamage(Owner.GetComponent<Stats>(), _entitiesToDamage[i].GetComponent<Stats>(), _entitiesToDamage[i].GetComponent<TakeDamage>());
+            }
+
+            State = SkillState.NOT_IN_USE;
+            Owner.TurnEnded.Emit();
         }
     }
 }

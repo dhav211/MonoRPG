@@ -1,11 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System;
 
 namespace MonoRPG
 {
-    public class Fireball : Entity
+    class Molotov : Entity
     {
-        ProjectileComponent projectileComponent;
         Transform transform;
         SpriteRenderer sprite;
         AnimationController animation;
@@ -14,23 +15,21 @@ namespace MonoRPG
         {
             base.Initialize(_entityManager);
 
-            projectileComponent = new ProjectileComponent(this);
             transform = new Transform(this);
-            sprite = new SpriteRenderer(this, entityManager.SpriteBatch, entityManager.ContentManager.Load<Texture2D>("sprites/fireball"), new Point(16,16));
+            sprite = new SpriteRenderer(this, entityManager.SpriteBatch, entityManager.ContentManager.Load<Texture2D>("sprites/fire_spread"), new Point(16,16));
             animation = new AnimationController(this);
 
             foreach (Component component in Components)
                 component.Initialize();
-            
+
             transform.Position = _position;
+            SetGridPosition(transform, new Point((int)Math.Floor(transform.Position.X) / 16, (int)Math.Floor(transform.Position.Y / 16)));
 
-            animation.Add("moving", new int[] {0,1,2}, 4);
-            animation.Add("explode", new int[] {3,4,5}, 4, false);
+            animation.Add("burn", new int[] {0,1,2,3,4,3,2,1,0}, 6, false);
+            Action _onBurnAnimationComplete = onBurnAnimationComplete;
+            animation.Animations["burn"].OnComplete.Add("molotov", _onBurnAnimationComplete);
 
-            System.Action _onExplodeAnimationComplete = onExplodeAnimationComplete;
-            animation.Animations["explode"].OnComplete.Add("fireball", _onExplodeAnimationComplete);
-
-            animation.Play("moving");
+            IsWalkable = true;
         }
 
         public override void Update(float deltaTime)
@@ -45,13 +44,13 @@ namespace MonoRPG
 
         public override void Kill()
         {
-            animation.Play("explode");
-        }
-
-        public void onExplodeAnimationComplete()
-        {
             Destroy.Emit();
             entityManager.RemoveEntity(this);
+        }
+
+        public void onBurnAnimationComplete()
+        {
+            Kill();
         }
     }
 }

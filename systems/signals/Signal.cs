@@ -10,6 +10,7 @@ namespace MonoRPG
         List<Listener> listeners = new List<Listener>();
         SignalAwaiter awaiter = new SignalAwaiter();
         bool isEmitted = false;
+        bool isWaitCancelled = false;
 
         ///<summary>
         /// Add a listener to signal
@@ -57,10 +58,21 @@ namespace MonoRPG
 
         public async Task Wait()
         {
+            isWaitCancelled = false;
+            awaiter.Awaiters++;
+            
             while(!awaiter.IsEmitted)
             {
                 await Task.Delay(1);
+
+                if (isWaitCancelled)
+                    break;
             }
+        }
+
+        public void StopWait()
+        {
+            isWaitCancelled = true;
         }
 
         public class Listener
@@ -95,13 +107,15 @@ namespace MonoRPG
 
             public async void NotifyAwaiter()
             {
-               
-                IsEmitted = true;
+               if (Awaiters > 0)
+               {
+                    IsEmitted = true;
 
-                await Task.Delay(10);
+                    await Task.Delay(10);
 
-                IsEmitted = false;
-                Awaiters = 0;
+                    IsEmitted = false;
+                    Awaiters = 0;
+               }
             }
         }
     }

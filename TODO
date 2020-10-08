@@ -10,7 +10,7 @@ Tasks:
     X3. Change camera movement. Right now it just freely moves when mouse is near edge of screen. I want a clamp on how far it can move from player. Also
         it won't be able to move by edge of screen but only when player holds the C key
     
-    4. Skills. Two basic skills and the rest can be extended from there. Fireball and Molotov
+    X4. Skills. Two basic skills and the rest can be extended from there. Fireball and Molotov
         - First start with skill bar at the bottom. This will show a picture of skill and cool down number if cooling down.
 
         -Fireball

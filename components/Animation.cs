@@ -11,7 +11,7 @@ namespace MonoRPG
         enum State { PLAYING, PAUSED }
         State currentState = State.PLAYING;
 
-        public Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
+        public Dictionary<string, Animation> Animations = new Dictionary<string, Animation>();
         Animation currentAnimation;
         List<Point> frames = new List<Point>();
 
@@ -42,9 +42,9 @@ namespace MonoRPG
             
             if (currentState == State.PLAYING)
             {
-                if (currentFrameTime >= animationSpeed)
+                if (currentFrameTime >= animationSpeed)  // It is time to go to next frame
                 {
-                    if (currentAnimation.CurrentFrameIndex == currentAnimation.TotalFrames)
+                    if (currentAnimation.CurrentFrameIndex == currentAnimation.TotalFrames) // The animation has completed it's cycle
                     {
                         currentAnimation.OnComplete.Emit();
                         if (!currentAnimation.IsRepeating)
@@ -62,10 +62,13 @@ namespace MonoRPG
             }
         }
 
+        ///<summary>
+        /// Add a new animation to the controller, the name variable is used to access this animation in the dictonary.
+        ///</summary>
         public void Add(string _name, int[] _frames, float _speed = 8, bool _isRepeating = true) 
         {
             Animation animation = new Animation(_name, _frames, _isRepeating, _speed, numberOfFrames);
-            animations.Add(animation.Name, animation);
+            Animations.Add(animation.Name, animation);
 
             if (currentAnimation == null)
             {
@@ -74,13 +77,16 @@ namespace MonoRPG
             }
         }
 
+        ///<summary>
+        /// Set animation to play by giving the name of the animation
+        ///</summary>
         public void Play(string _animationName) 
         {
-            if (currentAnimation.Name == _animationName)
+            if (currentAnimation.Name == _animationName)  // animation is already playing, so get out of this function.
                 return;
             
-            currentAnimation = animations[_animationName];
-            currentFrame = animations[_animationName].Frames[0];
+            currentAnimation = Animations[_animationName];
+            currentFrame = Animations[_animationName].Frames[0];
             animationSpeed = currentAnimation.Speed;
             spriteRenderer.SetTextureFrame(frames[currentFrame].X, frames[currentFrame].Y);
             currentState = State.PLAYING;
@@ -104,6 +110,10 @@ namespace MonoRPG
             return new Point();
         }
 
+        ///<summary>
+        /// Animations are created from one large sprite. This doesn't so much spilt it, but gets all the origin points of each animation frame so when the
+        /// frame needs to be played, it gets it's origin point and sets it in a rectangle.
+        ///</summary>
         private void SplitTexture()
         {
             int textureWidth = spriteRenderer.Texture.Width;
@@ -143,17 +153,24 @@ namespace MonoRPG
                 SetIncorrectFrames(_maxFrames);
             }
 
+            ///<summary>
+            /// If an incorrect frame is given during the creation of an animation, then it is set to zero so it won't give any errors.
+            ///</summary>
             private void SetIncorrectFrames(int _maxFrames)
             {
                 for (int i = 0; i < Frames.Length; ++i)
                 {
                     if (Frames[i] < 0 || Frames[i] >= _maxFrames)
                     {
+                        System.Console.WriteLine("Incorrect correct frame given for " + Name + " animation");
                         Frames[i] = 0;
                     }
                 }
             }
 
+            ///<summary>
+            /// Increase the frame, if frame over the total number of frames then set it back to 0.
+            ///</summary>
             public int GetNextFrame()
             {
                 CurrentFrameIndex++;

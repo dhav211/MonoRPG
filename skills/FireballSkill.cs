@@ -86,7 +86,7 @@ namespace MonoRPG
                 }
                 
                 
-                DamageTarget(target, projectile);
+                DamageTarget(target, projectile, fireball);
                 CurrentCooldown = CooldownPeriod;
                 wasJustUsed = true;
                 OnUsed.Emit();
@@ -94,7 +94,7 @@ namespace MonoRPG
             }
         }
 
-        private async void DamageTarget(Entity _target, ProjectileComponent _projectileComponent)
+        private async void DamageTarget(Entity _target, ProjectileComponent _projectileComponent, Fireball _fireball)
         {
             await _projectileComponent.ReachedTarget.Wait();  // TODO this may be better set as not an await, but this function will be called when the projectiles'
                                                             // ReachedTarget signal is emitted. The parameters will just be stored as headers, which will be
@@ -105,6 +105,8 @@ namespace MonoRPG
                 Attack ownerAttack = Owner.GetComponent<Attack>();
                 ownerAttack.DealMagicalDamage(Owner.GetComponent<Stats>(), _target.GetComponent<Stats>(), _target.GetComponent<TakeDamage>());
             }
+
+            await _fireball.Destroy.Wait();
 
             State = SkillState.NOT_IN_USE;
             Owner.TurnEnded.Emit();

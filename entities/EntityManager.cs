@@ -135,6 +135,12 @@ namespace MonoRPG
         ///</summary>
         public void RemoveEntity(Entity _entity)
         {
+            if (_entity.HasComponent<Transform>())
+            {
+                Transform entityPosition = _entity.GetComponent<Transform>();
+                Grid.RemoveEntityFromGridNode(entityPosition.GridPosition.X, entityPosition.GridPosition.Y, _entity);
+            }
+            
             entities.Remove(_entity);
         }
 
