@@ -13,13 +13,21 @@
     <File>/home/daniel/GameDev/MonoRPG/Content/sprites/white_box.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/tilesets/temp_tileset.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/ui/9splicesprite.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/ui/bar_background.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/ui/bottom_bar.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/ui/fire_spread_icon.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/ui/fireball_icon.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/ui/health_bar.png</File>
+    <File>/home/daniel/GameDev/MonoRPG/Content/ui/magic_bar.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/ui/skill_cooldown_cover.png</File>
     <File>/home/daniel/GameDev/MonoRPG/Content/ui/skill_ui_box.png</File>
   </SourceFiles>
   <DestFiles>
     <File>fonts/m5x7_16.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

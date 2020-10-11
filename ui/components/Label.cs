@@ -10,7 +10,7 @@ namespace MonoRPG
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
         public Rectangle DestinationRect { get; private set; }
-        public Vector2 Position { get; private set; }
+        public Vector2 Position { get; set; }
         private string text;
         public string Text
         {
@@ -52,6 +52,9 @@ namespace MonoRPG
             spriteFont = _spriteFont;
             Text = _text;
             color = _color;
+
+            Vector2 labelSize = spriteFont.MeasureString(Text);
+            DestinationRect = new Rectangle((int)Position.X, (int)Position.Y, (int)labelSize.X, (int)labelSize.Y);
         }
         
         public override void Draw(float deltaTime)
@@ -91,6 +94,11 @@ namespace MonoRPG
             }
 
             return wrappedText;
+        }
+
+        public void SetPosition(Vector2 _position)
+        {
+            Position = new Vector2((_position.X + owner.DestinationRect.X) * Screen.Scale, (_position.Y + owner.DestinationRect.Y) * Screen.Scale);
         }
     }
 }

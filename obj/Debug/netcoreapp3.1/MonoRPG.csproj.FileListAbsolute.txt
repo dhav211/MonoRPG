@@ -36,3 +36,7 @@
 /home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/sprites/damage_square.xnb
 /home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/sprites/fireball.xnb
 /home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/sprites/fire_spread.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/bar_background.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/health_bar.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/magic_bar.xnb
+/home/daniel/GameDev/MonoRPG/bin/Debug/netcoreapp3.1/Content/ui/bottom_bar.xnb

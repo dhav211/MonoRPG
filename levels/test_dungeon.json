@@ -11768,7 +11768,7 @@
           "y": 256,
           "originX": 0,
           "originY": 0,
-          "values": {"enemy_id": 0}
+          "values": {"enemy_id": 1}
         },
         {
           "name": "enemy",

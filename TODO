@@ -32,23 +32,8 @@ Tasks:
             - On the take damage component, it will emit a signal when Health is changed. The enemy stat popup can connect to this signal when created.
             It will also be needed when player health bars are created
     
-    7. Show health bars at bottom of screen, above skill slots.
+    X7. Show health bars at bottom of screen, above skill slots.
 
-
-    -Debug Console-
-    Prints debug messages to a text box which is activated by pressing F1
-    
-
-
-
-
-
-Signals
-    - Learn more about delegates and events.
-
-
-
-Scene Management
 
 
 REMINDERS:

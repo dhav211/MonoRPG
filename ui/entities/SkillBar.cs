@@ -9,6 +9,8 @@ namespace MonoRPG
     {
         Player player;
         SkillsComponent playerSkills;
+        Stats playerStats;
+
         public SpriteFont SpriteFont {get ; private set; }
         public SkillButton[] SkillButtons { get; private set; } = new SkillButton[10];
 
@@ -16,6 +18,7 @@ namespace MonoRPG
         {
             player = _player as Player;
             playerSkills = player.GetComponent<SkillsComponent>();
+            playerStats = player.GetComponent<Stats>();
         }
 
         public override void Initialize(UIEntityManager _uiEntityManager)
@@ -58,10 +61,10 @@ namespace MonoRPG
 
             int skillButtonSpacing = 8;
             int numberOfSkillButtons = 10;
-            int totalSkillBarsWidth = (skillButtonTexture.Width * numberOfSkillButtons) + (skillButtonSpacing * numberOfSkillButtons);
+            int totalSkillBarsWidth = (skillButtonTexture.Width * numberOfSkillButtons) + (skillButtonSpacing * (numberOfSkillButtons - 1));
             int sideBufferWidth = (Screen.Width - totalSkillBarsWidth) / 2;
             int ySpawnPos = Screen.Height - skillButtonTexture.Height;
-            int currentXSpawnPos = 80;
+            int currentXSpawnPos = sideBufferWidth;
             int xSpawnIncreaseAmount = skillButtonTexture.Width + skillButtonSpacing;
 
             for (int i = 0; i < SkillButtons.Length; ++i)
@@ -88,6 +91,24 @@ namespace MonoRPG
             }
         }
 
+        public void SetUsableWithCurrentMP()
+        {
+            foreach(SkillButton skillButton in SkillButtons)
+            {
+                if (skillButton.SetSkill == null)
+                    continue;
+
+                if (skillButton.SetSkill.Cost <= playerStats.MP)
+                {
+                    skillButton.isNotEnoughMP = false;
+                }
+                else
+                {
+                    skillButton.isNotEnoughMP = true;
+                }
+            }
+        }
+
         public class SkillButton
         {
             public TextureButton Button { get; set; }
@@ -100,6 +121,7 @@ namespace MonoRPG
             Texture2D cooldownCoverTexture;
             bool isButtonInitialized = false;
             bool isCoolingDown = false;
+            public bool isNotEnoughMP { get; set; } = false;
 
             public SkillButton(Rectangle _destination, Texture2D _textureOfSkillBox, SkillBar _skillBar)
             {
@@ -137,18 +159,18 @@ namespace MonoRPG
                 Action skillButtonPressedAction = SetSkill.Execute;
                 Button.Pressed.Add("skill_button", skillButtonPressedAction);
 
-                SetSkill.OnUsed.RemoveAllListeners();
+                SetSkill.OnUsed.RemoveListener("skill_button");
                 Action _onUsed = onSkillUsed;
                 SetSkill.OnUsed.Add("skill_button", _onUsed);
 
-                SetSkill.OnCoolDownFinished.RemoveAllListeners();
+                SetSkill.OnCoolDownFinished.RemoveListener("skill_button");
                 Action _onCoolDownFinished = onCooldownFinished;
                 SetSkill.OnCoolDownFinished.Add("skill_button", _onCoolDownFinished);
             }
 
             public void Update(float deltaTime)
             {
-                if (isButtonInitialized && !isCoolingDown)
+                if (isButtonInitialized && !isCoolingDown && !isNotEnoughMP)
                     Button.Update(deltaTime);
             }
 
@@ -159,7 +181,7 @@ namespace MonoRPG
                 if (isButtonInitialized)
                     Button.Draw(deltaTime);
                 
-                if (isCoolingDown)
+                if (isCoolingDown || isNotEnoughMP)
                     cooldownCover.Draw(deltaTime);
             }
 
@@ -176,6 +198,8 @@ namespace MonoRPG
                     isCoolingDown = true;
                     cooldownPeriod.Text = SetSkill.CurrentCooldown.ToString();
                 }
+
+                SkillBar.SetUsableWithCurrentMP();
             }
 
             public void onCooldownFinished()

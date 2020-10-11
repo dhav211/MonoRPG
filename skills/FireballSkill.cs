@@ -11,13 +11,10 @@ namespace MonoRPG
         {
             Name = "Fireball";
             Cost = 5;
-            CooldownPeriod = 3;
+            CooldownPeriod = 5;
             State = SkillState.NOT_IN_USE;
 
             Icon = _entity.entityManager.ContentManager.Load<Texture2D>("ui/fireball_icon");
-            
-            OnUsed = new Signal();
-            OnCoolDownFinished = new Signal();
         }
 
         public override void Update(float deltaTime)
@@ -85,7 +82,8 @@ namespace MonoRPG
                     }
                 }
                 
-                
+                Stats stats = Owner.GetComponent<Stats>();
+                stats.MP -= Cost;
                 DamageTarget(target, projectile, fireball);
                 CurrentCooldown = CooldownPeriod;
                 wasJustUsed = true;

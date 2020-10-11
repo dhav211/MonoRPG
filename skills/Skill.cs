@@ -20,9 +20,9 @@ namespace MonoRPG
         protected bool wasJustUsed = false;
         protected LineOfSight lineOfSight;
 
-        public Signal OnComplete { get; set; }
-        public Signal OnUsed { get; set; }
-        public Signal OnCoolDownFinished { get; set; }
+        public Signal OnComplete { get; set; } = new Signal();
+        public Signal OnUsed { get; set; } = new Signal();
+        public Signal OnCoolDownFinished { get; set; } = new Signal();
 
         public Skill(Entity _entity)
         {
@@ -31,6 +31,10 @@ namespace MonoRPG
 
             Action _onTurnStarted = onTurnStarted;
             Owner.TurnStarted.Add("skill", _onTurnStarted);
+
+            SkillsComponent ownerSkills = Owner.GetComponent<SkillsComponent>();
+            Action _onSkillUsed = delegate { ownerSkills.SkillUsed.Emit(); };
+            OnUsed.Add("skill", _onSkillUsed);
         }
 
         public virtual void Update(float deltaTime) { }

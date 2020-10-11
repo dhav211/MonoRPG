@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework;
 
 namespace MonoRPG
 {
@@ -24,7 +25,23 @@ namespace MonoRPG
             sceneToLoad.SetEntities(EntityManager);
             CurrentScene = sceneToLoad;
 
-            SkillBar skillBar = new SkillBar(EntityManager.GetEntityOfType<Player>());
+
+            // This bit should all be handled in a class called OnScreenGui, which will be created here and destroyed when scene changes
+            Player player = EntityManager.GetEntityOfType<Player>();
+
+            BottomBar bottomBar = new BottomBar();
+            EntityCreator.CreateUIEntity<BottomBar>(bottomBar);
+
+            int barSpawnY = bottomBar.DestinationRect.Y + 16;
+
+            HealthBar health = new HealthBar(player, new Vector2(16 * 5, barSpawnY));
+            EntityCreator.CreateUIEntity<HealthBar>(health);
+
+            // Magic Bar goes here
+            MagicBar magic = new MagicBar(player, new Vector2(Screen.Width - (16 * 5) - health.DestinationRect.Width, barSpawnY));
+            EntityCreator.CreateUIEntity<MagicBar>(magic);
+
+            SkillBar skillBar = new SkillBar(player);
             EntityCreator.CreateUIEntity<SkillBar>(skillBar);
             // TODO: The skill bar should probably be added to the ui entity manager for player equipping skills.
         }

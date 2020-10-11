@@ -45,7 +45,7 @@ namespace MonoRPG
             Grid.SetEntityInGridNode(transform.GridPosition.X, transform.GridPosition.Y, this);
 
             Name = "Player";
-            stats.SetStats("Player", 1, 15, 5, 4, 4, 4, 4);
+            stats.SetStats("Player", 1, 35, 15, 4, 4, 4, 4);
 
             _onTurnEnded = onTurnEnded;
 

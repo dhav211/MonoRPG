@@ -22,7 +22,7 @@ namespace MonoRPG
 
         Point currentMoveDirection = new Point();
         Point previousGridPosition = new Point();
-        Point[] previousGridPositions = new Point[2] { new Point(), new Point() };
+        Point[] previousGridPositions = new Point[2] { new Point(-1,-1), new Point(-1,-1) };
 
         public List<Point> PathToFollow { get; private set; } = new List<Point>();
         public Entity TargetToFollow { get; set; } = null;
@@ -89,6 +89,7 @@ namespace MonoRPG
                     if (PathToFollow.Count == 0)
                     {
                         CurrentState = State.STANDING;
+                        return;
                     }
                     else
                     {
@@ -102,24 +103,17 @@ namespace MonoRPG
                             SetPathToFollow(targetTransform.GridPosition);
                         }
 
-                        if (PathToFollow.Count > 0)
-                        {
-                            // There exists a chance an enemy can block the players path, so they will keep moving out of each others way creating an infinite
-                            // loop. This checks to see if the path isn't the same as it was two moves ago. if it was, then it means it's stuck in the same path
-                            if (PathToFollow[0] == previousGridPositions[1])
-                            {
-                                CurrentState = State.STANDING;
-                                return;
-                            }
-                            
-                            currentMoveDirection = PathToFollow[0] - transform.GridPosition;
-                            PathToFollow.RemoveAt(0);
-                            MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
-                        }
-                        else  // If by chance the recalculated path returns nothing, then just get back into standing state
+                        // There exists a chance an enemy can block the players path, so they will keep moving out of each others way creating an infinite
+                        // loop. This checks to see if the path isn't the same as it was two moves ago. if it was, then it means it's stuck in the same path
+                        if (PathToFollow[0] == previousGridPositions[1])
                         {
                             CurrentState = State.STANDING;
+                            return;
                         }
+
+                        currentMoveDirection = PathToFollow[0] - transform.GridPosition;
+                        PathToFollow.RemoveAt(0);
+                        MoveInDirection(new Vector2(currentMoveDirection.X, currentMoveDirection.Y));
                     }
                 }
             }
@@ -132,6 +126,8 @@ namespace MonoRPG
                 if (!Input.IsMouseInClickRange())
                     return;
 
+                ClearPreviousPositions();
+                
                 // Exit from this function if an entity is clicked in the PlayerInteract component.
                 // The player interact should have priority over this command
                 if (owner.Grid.IsEntityOcuppyingGridPosition(Input.GetMouseGridPosition()))
@@ -332,6 +328,12 @@ namespace MonoRPG
         public void onTurnEnded()
         {
             CurrentState = State.WAITING_FOR_TURN;
+        }
+
+        public void ClearPreviousPositions()
+        {
+            previousGridPositions[0] = new Point(-1,-1);
+            previousGridPositions[1] = new Point(-1,-1);
         }
 
         protected override void CheckRequiredComponents()

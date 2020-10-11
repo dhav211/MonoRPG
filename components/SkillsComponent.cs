@@ -7,13 +7,18 @@ namespace MonoRPG
         public List<Skill> Skills { get; private set; } = new List<Skill>();
         public Skill[] HotkeySkills { get; set; } = new Skill[10];
 
+        public Signal SkillUsed { get; private set; } = new Signal();
+
         public SkillsComponent(Entity _owner) : base(_owner)
         {
             owner.AddComponent<SkillsComponent>(this);
+        }
 
+        public override void Initialize()
+        {
             // TODO remove all this once an equip skill function is established
-            FireballSkill fireballSkill = new FireballSkill(_owner);
-            MolotovSkill molotovSkill = new MolotovSkill(_owner);
+            FireballSkill fireballSkill = new FireballSkill(owner);
+            MolotovSkill molotovSkill = new MolotovSkill(owner);
 
             Skills.Add(fireballSkill);
             HotkeySkills[0] = fireballSkill;

@@ -17,15 +17,12 @@ namespace MonoRPG
         {
             Name = "Molotov";
             Cost = 5;
-            CooldownPeriod = 3;
+            CooldownPeriod = 8;
             State = SkillState.NOT_IN_USE;
 
             Icon = _entity.entityManager.ContentManager.Load<Texture2D>("ui/fire_spread_icon");
 
             floodFill = new FloodFill(Owner.Grid);
-            
-            OnUsed = new Signal();
-            OnCoolDownFinished = new Signal();
         }
 
         public override void Update(float deltaTime)
@@ -126,6 +123,8 @@ namespace MonoRPG
 
                 indicationAreas.Clear();
 
+                Stats stats = Owner.GetComponent<Stats>();
+                stats.MP -= Cost;
                 DamageTarget(molotovToWait, entitiesToDamage);
                 CurrentCooldown = CooldownPeriod;
                 wasJustUsed = true;

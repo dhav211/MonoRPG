@@ -25,7 +25,9 @@ namespace MonoRPG
             {
                 if (!Input.IsMouseInClickRange())
                     return;
-                    
+                
+                playerController.ClearPreviousPositions();
+
                 // TODO: refactor this so it is not only used here but in the player controller script
                 Entity entityClicked = null;
                 Point gridPositionClicked = Input.GetMouseGridPosition();

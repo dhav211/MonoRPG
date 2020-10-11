@@ -8,7 +8,11 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "/home/daniel/GameDev/MonoRPG/Content/sprites/white_box.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/sprites/white_box.xnb","TextureProcessor","Texture2DContent",175,6229,0.0009242
 "/home/daniel/GameDev/MonoRPG/Content/tilesets/temp_tileset.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/tilesets/temp_tileset.xnb","TextureProcessor","Texture2DContent",510,6229,0.0030094
 "/home/daniel/GameDev/MonoRPG/Content/ui/9splicesprite.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/9splicesprite.xnb","TextureProcessor","Texture2DContent",309,9301,0.001123
+"/home/daniel/GameDev/MonoRPG/Content/ui/bar_background.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/bar_background.xnb","TextureProcessor","Texture2DContent",160,6229,0.1387626
+"/home/daniel/GameDev/MonoRPG/Content/ui/bottom_bar.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/bottom_bar.xnb","TextureProcessor","Texture2DContent",482,103765,0.1258893
 "/home/daniel/GameDev/MonoRPG/Content/ui/fire_spread_icon.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/fire_spread_icon.xnb","TextureProcessor","Texture2DContent",235,1109,0.0007581
 "/home/daniel/GameDev/MonoRPG/Content/ui/fireball_icon.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/fireball_icon.xnb","TextureProcessor","Texture2DContent",200,1109,0.0008062
+"/home/daniel/GameDev/MonoRPG/Content/ui/health_bar.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/health_bar.xnb","TextureProcessor","Texture2DContent",162,6229,0.0010245
+"/home/daniel/GameDev/MonoRPG/Content/ui/magic_bar.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/magic_bar.xnb","TextureProcessor","Texture2DContent",164,6229,0.000744
 "/home/daniel/GameDev/MonoRPG/Content/ui/skill_cooldown_cover.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/skill_cooldown_cover.xnb","TextureProcessor","Texture2DContent",99,1109,0.1326025
 "/home/daniel/GameDev/MonoRPG/Content/ui/skill_ui_box.png","/home/daniel/GameDev/MonoRPG/Content/bin/DesktopGL/ui/skill_ui_box.xnb","TextureProcessor","Texture2DContent",244,2389,0.122739
