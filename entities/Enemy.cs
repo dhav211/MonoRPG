@@ -50,7 +50,7 @@ namespace MonoRPG
 
             Name = "Enemy";
             stats.SetStats(Name, 1, 10, 5, 3, 3, 3, 3);
-            EnemyID = _entityValues.chest_id;
+            EnemyID = _entityValues.enemy_id;
             interactionComponent.MainInteraction = InteractionComponent.InteractionType.ATTACK;
             interactionComponent.Interactions.Add(InteractionComponent.InteractionType.ATTACK);
 

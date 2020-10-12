@@ -68,6 +68,9 @@ namespace MonoRPG
             {
                 case "TestDungeonL1":
                     return new TestDungeonL1();
+
+                default:
+                    break;
             }
             return new Scene();
         }

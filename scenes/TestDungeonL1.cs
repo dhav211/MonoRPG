@@ -41,6 +41,9 @@ namespace MonoRPG
                         chest.SetItemsInside(chest2Items);
                         break;
                     }
+
+                    default:
+                        break;
                 }
             }
         }

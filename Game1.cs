@@ -66,7 +66,7 @@ namespace MonoRPG
             inventory = new Inventory();
             entityManager = new EntityManager(this.Content, _spriteBatch, grid, camera, turnManager, inventory);
             uIEntityManager = new UIEntityManager(_spriteBatch, Content);
-            menuManager = new MenuManager(inventory, entityManager);
+            menuManager = new MenuManager(inventory, entityManager, uIEntityManager);
             EntityCreator.Initialize(entityManager, uIEntityManager);
             tilemapRenderer = new TilemapRenderer(_spriteBatch);
             levelLoader = new LevelLoader(tilemapRenderer, new TilemapEntityLoader(entityManager), grid, entityManager);

@@ -65,5 +65,10 @@ namespace MonoRPG
             hpLabel.Draw(deltaTime);
             mpLabel.Draw(deltaTime);
         }
+
+        public void SetCurrentHP(int _value)
+        {
+            hpLabel.Text = _value.ToString();
+        }
     }
 }

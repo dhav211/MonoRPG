@@ -27,7 +27,7 @@ Tasks:
         - Hightlighted text buttons will turn yellow instead of it's usual white
     
     6. Add some better functionality to the Enemy Stat Popup menu.
-        - It should close when another menu opens.
+        X- It should close when another menu opens.
         - When enemy takes some damage and the menu is open, then update it. A signal will take care of this.
             - On the take damage component, it will emit a signal when Health is changed. The enemy stat popup can connect to this signal when created.
             It will also be needed when player health bars are created

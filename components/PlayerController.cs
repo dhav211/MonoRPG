@@ -21,7 +21,6 @@ namespace MonoRPG
         public State CurrentState { get; set; } = State.STANDING;
 
         Point currentMoveDirection = new Point();
-        Point previousGridPosition = new Point();
         Point[] previousGridPositions = new Point[2] { new Point(-1,-1), new Point(-1,-1) };
 
         public List<Point> PathToFollow { get; private set; } = new List<Point>();
@@ -271,7 +270,7 @@ namespace MonoRPG
                 scrollDirection.X = -1;
             }
 
-            if (playerScreenPosition.Y > Screen.Height * .85 && currentMoveDirection == new Point(0,1))
+            if (playerScreenPosition.Y > Screen.Height * .75 && currentMoveDirection == new Point(0,1))
             {
                 scrollDirection.Y = 1;
             }
@@ -280,9 +279,13 @@ namespace MonoRPG
                 scrollDirection.Y = -1;
             }
 
-            if (scrollDirection.X > 0 || scrollDirection.X < 0 || scrollDirection.Y > 0 || scrollDirection.Y < 0)
+            if (scrollDirection.X > 0 || scrollDirection.X < 0)
             {
-                camera.Scroll(scrollDirection, scrollDistance, .5f);
+                camera.Scroll(scrollDirection, Screen.Width * .65f, .35f);
+            }
+            else if (scrollDirection.Y > 0 || scrollDirection.Y < 0)
+            {
+                camera.Scroll(scrollDirection, Screen.Height * .65f, .35f);
             }
         }
         

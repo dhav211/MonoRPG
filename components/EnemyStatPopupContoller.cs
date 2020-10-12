@@ -8,10 +8,12 @@ namespace MonoRPG
         EnemyStatPopup enemyStatPopup = null;
         Stats stats;
         Transform transform;
+        TakeDamage takeDamage;
 
         Action _onMouseEntered;
         Action _onMouseExited;
         Action _onPressed;
+        Action _onTookDamage;
 
         public EnemyStatPopupController (Entity _owner) : base(_owner)
         {
@@ -20,6 +22,7 @@ namespace MonoRPG
             _onMouseEntered = onMouseEntered;
             _onMouseExited = onMouseExited;
             _onPressed = onPressed;
+            _onTookDamage = onTookDamage;
 
             owner.MouseEntered.Add("enemy_stat_popup_controller", _onMouseEntered);
             owner.MouseExited.Add("enemy_stat_popup_controller", _onMouseExited);
@@ -28,8 +31,11 @@ namespace MonoRPG
 
         public override void Initialize()
         {
-            stats = owner.GetComponent<Stats>() as Stats;
-            transform = owner.GetComponent<Transform>() as Transform;
+            stats = owner.GetComponent<Stats>();
+            transform = owner.GetComponent<Transform>();
+            takeDamage = owner.GetComponent<TakeDamage>();
+
+            takeDamage.TookDamage.Add("enemy_stat_popup_controller", _onTookDamage);
         }
 
         private void Open()
@@ -71,6 +77,14 @@ namespace MonoRPG
         public void onPressed()
         {
             Close();
+        }
+
+        public void onTookDamage()
+        {
+            if (enemyStatPopup == null)
+                return;
+            
+            enemyStatPopup.SetCurrentHP(stats.HP);
         }
     }
 }
