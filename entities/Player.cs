@@ -16,6 +16,7 @@ namespace MonoRPG
         TakeDamage takeDamage;
         Attack attack;
         SkillsComponent skills;
+        PlayerEquipment equipment;
         public Camera Camera { get; set; }
 
         public Action _onTurnEnded;
@@ -34,6 +35,7 @@ namespace MonoRPG
             takeDamage = new TakeDamage(this);
             attack = new Attack(this);
             skills = new SkillsComponent(this);
+            equipment = new PlayerEquipment(this);
 
             TurnManager.Entities.Add(this);
 
@@ -45,7 +47,17 @@ namespace MonoRPG
             Grid.SetEntityInGridNode(transform.GridPosition.X, transform.GridPosition.Y, this);
 
             Name = "Player";
-            stats.SetStats("Player", 1, 35, 15, 4, 4, 4, 4);
+            stats.SetStats("Player", 1, 35, 15, 4, 4, 4, 4, 4, 4);
+
+            Equipment.WoodenSword woodenSword = new Equipment.WoodenSword();
+            entityManager.Inventory.AddItem(woodenSword);
+            equipment.Equip(woodenSword);
+
+            Equipment.WalkingShoes walkingShoes = new Equipment.WalkingShoes();
+            entityManager.Inventory.AddItem(walkingShoes);
+
+            Equipment.SimpleHat simpleHat = new Equipment.SimpleHat();
+            entityManager.Inventory.AddItem(simpleHat);
 
             _onTurnEnded = onTurnEnded;
 

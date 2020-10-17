@@ -39,6 +39,23 @@ namespace MonoRPG
                 CurrentMenuOpen = Menu.NONE;
                 close();
             }
+
+            if (Input.IsKeyJustPressed(Keys.P) && CurrentMenuOpen != Menu.PLAYER)
+            {
+                if (CurrentMenuOpen != Menu.NONE)
+                    close();
+                
+                CloseEnemyStatPopupMenus();
+                CurrentMenuOpen = Menu.PLAYER;
+                StatsMenu statsMenu = new StatsMenu(entityManager);
+                EntityCreator.CreateUIEntity<StatsMenu>(statsMenu);
+                close = statsMenu.Close;
+            }
+            else if (Input.IsKeyJustPressed(Keys.P) && CurrentMenuOpen == Menu.PLAYER)
+            {
+                CurrentMenuOpen = Menu.NONE;
+                close();
+            }
         }
 
         private void CloseEnemyStatPopupMenus()

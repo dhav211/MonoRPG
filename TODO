@@ -1,38 +1,23 @@
 Tasks:
-    X1. When player clicks on a dead enemy or chest a menu will open allowing player to select items they wish to take
-        - when chest is empty a text box will open saying that it is empty.
-        - when dead enemy is empty, then nothing will happen.
-    
-    X2. Create a locked chest which requires a key to unlock.
-        - a message will open saying which key it requires. At bottom of box it will say Close and Unlock. If player has key it will say Unlock if he doesnt
-            it wont.
-    
-    X3. Change camera movement. Right now it just freely moves when mouse is near edge of screen. I want a clamp on how far it can move from player. Also
-        it won't be able to move by edge of screen but only when player holds the C key
-    
-    X4. Skills. Two basic skills and the rest can be extended from there. Fireball and Molotov
-        - First start with skill bar at the bottom. This will show a picture of skill and cool down number if cooling down.
+    X1. Lighting - Lets save this for later, learn about shaders first. Good luck buddy.
+    X2. Equipment
+    3. Player Stats Menu
+        - A fairly simple menu that will just tell you your HP, stats, experience, and whatever aliments you may have.
+    4. Equipment Menu
+        - This will be a bit more complicated of a menu that will involve multiple popup menus and whatnot.
+        - When menu is initially opened it will have buttons for all the equipment.
+            - Each button will be named after the name of the equipment.
+            - This will check the players equipment and create the button names from whats equipped
+            - To the left of the button will be a label that says the position it's equipped (R. Hand, Head, etc)
+        - On the right side of this menu will show the stats of the equpment, the stats it changes and a description of the equipment.
+        - When button is clicked it will popup another menu which will display a list like the inventory. Each one will be a button.
+        - When the button is clicked, then the player will equip that item.
+        - Much like the main equipment menu, on the right side it will show the same stats.
+        - In the stat section, the stats will be color coded. If the stat increases then it will be green, if lowers red, if the same white
 
-        -Fireball
-        - This will form a line from where player clicks, it will check if there are any collisions with walls.
-        - The fireball will tween to collision point (usually entity)
-        - once tween is finished it will calculate damage to entity and disappear
-        - proceed to next turn.
-
-        -Molotov
-        -Similar, create line check for entities.
-        - Main difference is it will damage and area. Use flood fill to check for entities and calculate damage.
-    
-    X5. Create keyboard movement for menus.
-        - Hightlighted text buttons will turn yellow instead of it's usual white
-    
-    6. Add some better functionality to the Enemy Stat Popup menu.
-        X- It should close when another menu opens.
-        - When enemy takes some damage and the menu is open, then update it. A signal will take care of this.
-            - On the take damage component, it will emit a signal when Health is changed. The enemy stat popup can connect to this signal when created.
-            It will also be needed when player health bars are created
-    
-    X7. Show health bars at bottom of screen, above skill slots.
+    5. Knockback skill
+    6. Load new scene
+    7. Saving and Loading
 
 
 

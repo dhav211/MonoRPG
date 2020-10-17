@@ -49,7 +49,7 @@ namespace MonoRPG
             Grid.SetEntityInGridNode(transform.GridPosition.X, transform.GridPosition.Y, this);
 
             Name = "Enemy";
-            stats.SetStats(Name, 1, 10, 5, 3, 3, 3, 3);
+            stats.SetStats(Name, 1, 10, 5, 3, 3, 3, 3, 3, 3);
             EnemyID = _entityValues.enemy_id;
             interactionComponent.MainInteraction = InteractionComponent.InteractionType.ATTACK;
             interactionComponent.Interactions.Add(InteractionComponent.InteractionType.ATTACK);

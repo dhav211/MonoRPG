@@ -46,13 +46,25 @@ namespace MonoRPG
         public int DEF { get; set; }
         public int INT { get; set; }
         public int RES { get; set; }
+        public int LUK { get; set; }
+        public int SPD { get; set; }
+        public int EXP { get; set; }
+
+        public int BaseHP { get; set; }
+        public int BaseMP { get; set; }
+        public int BaseATK { get; set; }
+        public int BaseDEF { get; set; }
+        public int BaseINT { get; set; }
+        public int BaseRES { get; set; }
+        public int BaseLUK { get; set; }
+        public int BaseSPD { get; set; }
 
         public Stats(Entity _owner) : base(_owner)
         {
             owner.AddComponent<Stats>(this);
         }
 
-        public void SetStats(string _name, int _lvl, int _hp, int _mp, int _atk, int _def, int _int, int _res)
+        public void SetStats(string _name, int _lvl, int _hp, int _mp, int _atk, int _def, int _int, int _res, int _luk, int _spd)
         {
             Name = _name;
             LVL = _lvl;
@@ -64,6 +76,9 @@ namespace MonoRPG
             DEF = _def;
             INT = _int;
             RES = _res;
+            SPD = _spd;
+            LUK = _luk;
+            EXP = 0;
         }
     }
 }
